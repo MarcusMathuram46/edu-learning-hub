@@ -1,0 +1,234 @@
+/* admin-student-detail.css */
+
+.admin-student-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: #FFFFFF;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.admin-student-detail-card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.admin-student-detail-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.admin-student-detail-card-header {
+  background-color: #D32F2F;
+  padding: 15px;
+  border-bottom: 1px solid #FFC107;
+}
+
+.admin-student-detail-card-header h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.admin-student-detail-card-header .badge {
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  border-radius: 20px;
+  background-color: #FFC107;
+  color: #333333;
+}
+
+.admin-student-detail-card-body {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.admin-student-detail-card-body-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.admin-student-detail-profile {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.admin-student-detail-profile img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid #D32F2F;
+  transition: transform 0.3s ease;
+}
+
+.admin-student-detail-profile img:hover {
+  transform: scale(1.05);
+}
+
+.admin-student-detail-profile .admin-student-detail-text {
+  color: #555;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+.admin-student-detail-info {
+  padding-left: 20px;
+}
+
+.admin-student-detail-header {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #D32F2F;
+  margin-top: 20px;
+}
+
+.admin-student-detail-progress {
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 8px;
+  margin-top: 10px;
+}
+
+.admin-student-detail-payment-list,
+.admin-student-detail-attendance-list,
+.admin-student-detail-certificate-list {
+  margin-top: 10px;
+}
+
+.admin-student-detail-payment-item,
+.admin-student-detail-attendance-item {
+  font-size: 1rem;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.admin-student-detail-payment-item:hover,
+.admin-student-detail-attendance-item:hover {
+  background-color: #fff8e1;
+}
+
+.admin-student-detail-payment-item .badge,
+.admin-student-detail-attendance-item .badge {
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #FFC107;
+  color: #333333;
+}
+
+.admin-student-detail-certificate-link {
+  color: #D32F2F;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-student-detail-certificate-link:hover {
+  text-decoration: underline;
+  color: #b71c1c;
+}
+
+.admin-student-detail-note {
+  background-color: #fff8e1;
+  border: 1px solid #FFC107;
+  border-radius: 5px;
+  padding: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.admin-student-detail-note:hover {
+  background-color: #fff3cd;
+}
+
+.admin-student-detail-text {
+  font-size: 1rem;
+  color: #333333;
+}
+
+.text-muted {
+  color: #777;
+}
+
+@media (max-width: 767px) {
+  .admin-student-detail-card-body-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .admin-student-detail-profile {
+    margin-bottom: 20px;
+  }
+
+  .admin-student-detail-info {
+    padding-left: 0;
+    margin-top: 20px;
+  }
+
+  .admin-student-detail-progress {
+    margin-top: 10px;
+  }
+
+  .admin-student-detail-payment-list,
+  .admin-student-detail-attendance-list,
+  .admin-student-detail-certificate-list {
+    padding-left: 0;
+  }
+
+  .admin-student-detail-payment-item,
+  .admin-student-detail-attendance-item {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .admin-student-detail-header {
+    font-size: 1rem;
+  }
+
+  .admin-student-detail-certificate-link {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .admin-student-detail-card-body-content {
+    padding: 15px;
+  }
+
+  .admin-student-detail-card-header h4 {
+    font-size: 1.2rem;
+  }
+
+  .admin-student-detail-profile img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .admin-student-detail-header {
+    font-size: 1.1rem;
+  }
+
+  .admin-student-detail-text {
+    font-size: 0.9rem;
+  }
+
+  .admin-student-detail-payment-item,
+  .admin-student-detail-attendance-item {
+    font-size: 0.8rem;
+  }
+
+  .admin-student-detail-payment-item .badge,
+  .admin-student-detail-attendance-item .badge {
+    font-size: 0.8rem;
+  }
+
+  .admin-student-detail-note {
+    padding: 10px;
+  }
+}

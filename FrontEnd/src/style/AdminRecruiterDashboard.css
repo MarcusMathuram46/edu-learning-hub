@@ -1,0 +1,139 @@
+/* RecruiterDashboard.css */
+
+/* Container Styling */
+.admin-recruiter-dashboard-container {
+  background: #ffffff; /* white background for readability */
+  min-height: 100vh;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Heading */
+.admin-recruiter-dashboard-heading {
+  font-size: 2.5rem;
+  color: #D32F2F; /* primary red */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+/* Card and Motion Wrapper */
+.admin-recruiter-dashboard-motion {
+  transition: transform 0.3s ease-in-out;
+}
+
+.admin-recruiter-dashboard-card {
+  background: white;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  transition: box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.admin-recruiter-dashboard-card:hover {
+  box-shadow: 0 10px 25px rgba(211, 47, 47, 0.2); /* subtle red tint */
+}
+
+/* Card Body */
+.admin-recruiter-dashboard-cardBody {
+  padding: 1.5rem;
+}
+
+/* Icon Circle */
+.admin-recruiter-dashboard-iconCircle {
+  width: 50px;
+  height: 50px;
+  font-size: 1.4rem;
+  background-color: #D32F2F; /* primary red */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.admin-recruiter-dashboard-iconCircle:hover {
+  background-color: #a00000;
+}
+
+/* Icon and Title Container */
+.admin-recruiter-dashboard-iconTitle {
+  align-items: center;
+}
+
+.admin-recruiter-dashboard-cardTitle {
+  font-size: 1.2rem;
+  color: #333333; /* dark gray */
+  font-weight: 600;
+}
+
+/* Description Text */
+.admin-recruiter-dashboard-cardText {
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+/* Button Wrapper and Button */
+.admin-recruiter-dashboard-buttonWrapper {
+  text-align: right;
+}
+
+.admin-recruiter-dashboard-button {
+  font-size: 0.9rem;
+  border-radius: 25px;
+  padding: 0.4rem 1.2rem;
+  background-color: #D32F2F; /* primary red */
+  color: #fff;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.admin-recruiter-dashboard-button:hover {
+  background-color: #a00000;
+  color: #fff;
+  border-color: #a00000;
+}
+
+/* Highlighted Section (Optional for future use) */
+.admin-recruiter-dashboard-highlight {
+  background-color: #FFC107; /* gold accent */
+  color: #333333;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .admin-recruiter-dashboard-heading {
+    font-size: 2rem;
+  }
+
+  .admin-recruiter-dashboard-buttonWrapper {
+    text-align: center;
+  }
+
+  .admin-recruiter-dashboard-cardBody {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .admin-recruiter-dashboard-iconCircle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .admin-recruiter-dashboard-cardTitle {
+    font-size: 1rem;
+  }
+
+  .admin-recruiter-dashboard-cardText {
+    font-size: 0.9rem;
+  }
+
+  .admin-recruiter-dashboard-button {
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,377 @@
+/* General Styles */
+.cam-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 30px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cam-title {
+  font-size: 2rem;
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.cam-form-group {
+  margin-bottom: 20px;
+}
+
+.cam-input, .cam-textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.cam-textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.cam-button, .cam-btn, .cam-btn-edit, .cam-btn-delete {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.cam-button:hover, .cam-btn:hover, .cam-btn-edit:hover, .cam-btn-delete:hover {
+  background-color:#c82333;
+}
+
+.cam-checkbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cam-ratio {
+  margin-right: 12px;
+}
+
+.cam-campaigns {
+  margin-top: 30px;
+}
+
+.cam-campaign-list {
+  list-style: none;
+  padding: 0;
+}
+
+.cam-campaign-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cam-btn-edit, .cam-btn-delete {
+  margin-top: 10px;
+}
+
+.cam-btn-edit {
+  background-color: #ffc107;
+}
+
+.cam-btn-edit:hover {
+  background-color: #e0a800;
+}
+
+.cam-btn-delete {
+  background-color: #dc3545;
+}
+
+.cam-btn-delete:hover {
+  background-color: #c82333;
+}
+
+.cam-form-group label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+/* New Lead Form */
+.cam-form-group input[type="text"], .cam-form-group input[type="email"] {
+  width: 48%;
+  margin-right: 4%;
+}
+
+.cam-form-group input[type="text"]:last-child, .cam-form-group input[type="email"]:last-child {
+  margin-right: 0;
+}
+
+.cam-form-group button {
+  display: inline-block;
+  width: 100%;
+  max-width: 160px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:#dc3545;
+}
+
+/* Buttons */
+.cam-btn {
+  
+  max-width: 100px;
+  
+  margin: 15px auto;
+  background-color:#c82333;
+}
+
+.cam-btn:hover {
+  background-color:#c82333;
+}
+.cam-form-group input[type="text"], .cam-form-group input[type="email"] {
+  width: 100%;
+  margin-right: 0;
+}
+.cam-input, .cam-textarea {
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+.cam-button {
+  width: 100%;
+  margin-top: 10px;
+}
+.cam-btn-delete{
+  margin-left: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .cam-input, .cam-textarea {
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+
+  .cam-form-group input[type="text"], .cam-form-group input[type="email"] {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .cam-button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .cam-btn, .cam-btn-edit, .cam-btn-delete {
+    width: 100%;
+    max-width: none;
+  }
+
+
+  .cam-campaign-item {
+    padding: 15px;
+  }
+  .cam-btn-delete{
+    margin-left: 0px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cam-title {
+    font-size: 1.6rem;
+
+  }
+
+  .cam-form-group {
+    margin-bottom: 15px;
+    
+  }
+
+  .cam-input, .cam-textarea {
+    font-size: 0.875rem;
+    
+  }
+  
+  .cam-button {
+    width: 100%;
+ 
+   
+  }
+}
+.cam-form-group .cam-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.cam-form-group {
+  margin-bottom: 20px;
+}
+
+.cam-form-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* 👇 Scrollable recipient section */
+.cam-form-group:nth-of-type(3) {
+  max-height: 250px; /* Adjust based on layout */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #fafafa;
+}
+
+/* Optional scrollbar styling */
+.cam-form-group:nth-of-type(3)::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cam-form-group:nth-of-type(3)::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+/* new design */
+
+/* Font size and spacing consistency */
+body, .cam-card {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.cam-title {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Input and textarea */
+.cam-input, .cam-textarea {
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+/* Primary buttons */
+.cam-button,
+.cam-btn,
+.cam-btn-edit,
+.cam-btn-delete {
+  font-size: 0.95rem;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Specific edit/delete */
+.cam-btn-edit {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.cam-btn-delete {
+  background-color: #dc3545;
+  color: white;
+  margin-left: 12px;
+}
+
+/* Campaign button wrapper for alignment */
+.cam-action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+@media (max-width: 768px) {
+  .cam-title {
+    font-size: 1.5rem;
+  }
+
+  .cam-input,
+  .cam-textarea {
+    font-size: 0.95rem;
+  }
+
+  .cam-button,
+  .cam-btn,
+  .cam-btn-edit,
+  .cam-btn-delete {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    width: 100%;
+  }
+
+  .cam-action-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .cam-btn-delete {
+    margin-left: 0 !important;
+  }
+ 
+  /* .cam-btn,
+  .cam-btn-edit,
+  {
+    font-size: 0.85rem;
+    width: 50px !important;
+    height: 50px;
+    font-size: 10px;
+    
+    
+
+  } */
+ 
+}
+
+@media (max-width: 480px) {
+  .cam-title {
+    font-size: 1.3rem;
+  }
+
+  .cam-input,
+  .cam-textarea {
+    font-size: 0.875rem;
+  }
+
+  .cam-button,
+  .cam-btn,
+  .cam-btn-edit,
+  .cam-btn-delete {
+    font-size: 0.85rem;
+    
+
+  }
+}
+.cam-button-cam{
+  width: 100%;
+  background-color:#dc3545;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+}
+.cam-button-cam:hover{
+  background-color: #c82333;
+}
+
+
+
+
+
+
+

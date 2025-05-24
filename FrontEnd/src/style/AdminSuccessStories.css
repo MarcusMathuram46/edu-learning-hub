@@ -1,0 +1,374 @@
+/* Color Palette */ 
+:root {
+  --primary-red: #D32F2F; /* Call-to-action buttonadmin, headings, icons */
+  --dark-gray: #333333;   /* Text & contrast sections */
+  --white: #FFFFFF;       /* Background for readability */
+  --gold-accent: #FFC107; /* Highlighting important sections */
+  --btn-hover: #007bff;   /* Hover color for buttons */
+}
+
+/* Container styling */
+.adminsuccess-story-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  font-family: sans-serif;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title & Subtitle */
+.adminsuccess-story-title, .success-story-subtitle {
+  margin-bottom: 15px;
+  text-align: center;
+  color: var(--dark-gray);
+ 
+}
+
+.adminsuccess-story-title {
+  font-size: 2rem;
+  color: var(--primary-red);
+}
+
+.adminsuccess-story-subtitle {
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+}
+
+/* Form Styling */
+.adminsuccess-story-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+ 
+}
+
+.adminsuccess-story-form:hover {
+  box-shadow: 0 4px 10px #0000001a;
+}
+
+.adminsuccess-story-form input[type="text"],
+.adminsuccess-story-form input[type="file"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.adminsuccess-story-form input[type="text"]:focus,
+.adminsuccess-story-form input[type="file"]:focus {
+  border-color: var(--primary-red);
+}
+
+/* Button Styling */
+.adminsuccess-story-btn {
+  padding: 10px 20px;
+  background-color: var(--primary-red);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.adminsuccess-story-btn:hover {
+  background-color: var(--btn-hover);
+  transform: translateY(-2px);
+}
+
+/* Story List */
+.adminsuccess-story-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Story Card */
+.adminsuccess-story-card {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 6px;
+  background: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+.adminsuccess-story-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Story Name */
+.adminsuccess-story-name {
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--dark-gray);
+  color: #007bff;
+  text-transform: capitalize;
+}
+
+/* Action Buttons inside Story Cards */
+.adminsuccess-story-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.adminsuccess-story-edit-btn,
+.adminsuccess-story-delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.adminsuccess-story-edit-btn {
+  color: var(--primary-red);
+}
+
+.adminsuccess-story-delete-btn {
+  color: #dc3545;
+}
+
+.adminsuccess-story-edit-btn:hover {
+  color: var(--gold-accent);
+}
+
+.adminsuccess-story-delete-btn:hover {
+  color: #ff5733;
+}
+
+/* Button hover effects */
+.adminsuccess-story-btn:hover {
+  background-color: var(--btn-hover);
+  transform: translateY(-2px);
+}
+.adminsuccess-span{
+  color: #333333;
+}
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.adminsuccess-story-title, .adminsuccess-story-subtitle, .adminsuccess-story-form, .adminsuccess-story-card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .adminsuccess-story-container {
+    padding: 15px;
+  }
+
+  .adminsuccess-story-form {
+    padding: 15px;
+  }
+
+  .adminsuccess-story-btn {
+    padding: 12px 20px;
+  }
+
+  .adminsuccess-story-list {
+    gap: 10px;
+  }
+
+  .adminsuccess-story-card {
+    flex-direction: column;
+  }
+
+  .adminsuccess-story-actions {
+    justify-content: space-around;
+  }
+}
+.adminsuccess-story-photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  object-position: top;
+  border: 2px solid #0077b5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+ 
+}
+
+
+
+
+
+
+
+
+/* Color Palette */
+:root {
+  --primary-red: #D32F2F;  /* Call-to-action buttons, headings, icons */
+  --dark-gray: #333333;    /* Text & contrast sections */
+  --light-gray: #f4f4f4;   /* Background for readability */
+  --white: #FFFFFF;        /* Background for readability */
+  --gold-accent: #FFC107;  /* Highlighting important sections */
+  --btn-hover: #007bff;    /* Hover color for buttons */
+  --linkedin-color: #0077b5; /* LinkedIn color */
+}
+
+/* Container for Story List */
+.adminsuccess-story-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  margin: 20px;
+}
+
+/* Story Card */
+.adminsuccess-story-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  background-color: var(--light-gray);
+}
+
+.adminsuccess-story-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+
+
+/* Image Styling */
+.adminsuccess-story-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+  /* Center image within the card */
+}
+
+/* Story Name, Company, and URL */
+.adminsuccess-story-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: var(--dark-gray);
+  margin-bottom: 8px;
+}
+
+.adminsuccess-span {
+  color: var(--primary-red);
+  font-weight: normal;
+}
+
+/* LinkedIn URL Styling */
+.linkedin-link {
+  color: var(--linkedin-color);
+  text-decoration: none;
+  font-weight: normal;
+  word-wrap: break-word;
+}
+
+.linkedin-link:hover {
+  text-decoration: underline;
+}
+
+/* Action Buttons (Edit and Delete) */
+.adminsuccess-story-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.adminsuccess-story-edit-btn,
+.adminsuccess-story-delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 5px;
+}
+
+.adminsuccess-story-edit-btn {
+  background-color: var(--primary-red);
+  color: #fff;
+}
+
+.adminsuccess-story-delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.adminsuccess-story-edit-btn:hover {
+  background-color: var(--gold-accent);
+  transform: translateY(-2px);
+}
+
+.adminsuccess-story-delete-btn:hover {
+  background-color: #ff5733;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .adminsuccess-story-card {
+    padding: 15px;
+  }
+
+  .adminsuccess-story-name {
+    font-size: 14px;
+  }
+
+  .adminsuccess-story-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  .adminsuccess-story-photo {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .adminsuccess-story-card {
+    padding: 12px;
+  }
+admin
+  .adminsuccess-story-name {
+    font-size: 12px;
+  }
+
+  .adminsuccess-story-photo {
+    height: 150px;
+  }
+
+  .adminsuccess-story-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}

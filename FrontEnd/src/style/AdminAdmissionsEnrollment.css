@@ -1,0 +1,113 @@
+:root {
+  --primary-red: #D32F2F;
+  --dark-gray: #333333;
+  --white: #FFFFFF;
+  --gold-accent: #FFC107;
+  --blue: #0073e6;
+  --gray-light: #f4f4f4;
+  --gray-dark: #666666;
+  --text-dark: #2c3e50;
+  --text-muted: #999999;
+}
+
+.admin-admission-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+  background-color: var(--white);
+}
+
+.admin-admission-container {
+  width: 80%;
+}
+
+.admin-admission-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  background-color: var(--gray-light);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.admin-admission-content:hover {
+  transform: translateY(-5px);
+}
+
+.admin-admission-text {
+  flex: 1;
+  text-align: left;
+  color: var(--dark-gray);
+}
+
+.admin-admission-image {
+  flex: 1;
+  display: flex;
+  justify-content: start;
+  width: 600px;
+  height: 300px;
+}
+
+.admin-admission-image img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .admin-admission-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .admin-admission-image {
+    justify-content: center;
+  }
+
+  .admin-admission-text {
+    text-align: center;
+  }
+}
+
+.admin-admission-title {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: left;
+  color: var(--primary-red);
+  transition: color 0.3s ease;
+}
+
+.admin-admission-title:hover {
+  color: var(--blue);
+}
+
+.admin-admission-subtitle {
+  font-size: 20px;
+  color: var(--gray-dark);
+  margin-top: 10px;
+}
+
+.admin-admission-description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--dark-gray);
+  margin-top: 20px;
+}
+
+.admin-admission-highlight {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--blue);
+}
+
+.admin-admission-highlight:hover {
+  color: var(--primary-red);
+  text-decoration: underline;
+}

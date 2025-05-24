@@ -1,0 +1,134 @@
+/* Container Styling */
+.email-template-container {
+  max-width: 900px;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+.email-template-container h2,
+.email-template-container h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Layout */
+.email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Input Fields */
+.email-input,
+.email-textarea {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
+}
+
+.email-input:focus,
+.email-textarea:focus {
+  border-color:#b02a37;
+  outline: none;
+}
+
+/* Textarea specific */
+.email-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Button Styling */
+.email-button {
+  padding: 0.9rem;
+  font-size: 1rem;
+  background-color:#dc3545 !important;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.email-button:hover {
+  background-color:#b02a37;
+}
+
+/* Email List */
+.email-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.email-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  position: relative;
+}
+
+.email-actions {
+  margin-top: 0.5rem;
+}
+
+.email-actions button {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.email-actions button:first-child {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.email-actions button:first-child:hover {
+  background-color: #e0a800;
+}
+
+.email-actions button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.email-actions button:last-child:hover {
+  background-color: #b02a37;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .email-template-container {
+    padding: 1rem;
+  }
+
+  .email-button {
+    font-size: 0.95rem;
+  }
+
+  .email-input,
+  .email-textarea {
+    font-size: 0.95rem;
+  }
+
+  .email-actions button {
+    margin-top: 0.4rem;
+    width: 100%;
+  }
+}
