@@ -9,7 +9,6 @@ const nodemailer = require("nodemailer");
 
 const path = require("path");
 
-
 const Admincontroller = {
   register: async (req, res) => {
     try {
@@ -36,10 +35,8 @@ const Admincontroller = {
 
       await newuser.save();
 
-
-
-      const approveURL = `https://learning-hub-p2yq.onrender.com/api/approveEmail/${newuser._id}`;
-      const rejectURL = `https://learning-hub-p2yq.onrender.com/api/rejectEmail/${newuser._id}`;
+      const approveURL = `https://edu-learning-hub.onrender.com/api/approveEmail/${newuser._id}`;
+      const rejectURL = `https://edu-learning-hub.onrender.com/api/rejectEmail/${newuser._id}`;
 
       const mailOptions = {
         from: process.env.EMAIL,
@@ -235,9 +232,7 @@ const Admincontroller = {
       };
 
       await transpoter.sendMail(composeemail);
-      return res
-        .status(200)
-        .json({ message: "token send in your email" });
+      return res.status(200).json({ message: "token send in your email" });
     } catch (err) {
       res.status(400).json({ message: err.meaasge });
     }
@@ -323,7 +318,7 @@ const Admincontroller = {
       console.log("Delete user request");
 
       const adminId = req.userid; // from auth middleware
-      const {id } = req.params;
+      const { id } = req.params;
 
       console.log("Logged in Admin ID:", adminId);
       console.log("User to delete ID:", id);

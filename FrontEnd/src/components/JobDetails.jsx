@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useParams, useNavigate } from "react-router-dom";  // <-- Import useNavigate
+import { useParams, useNavigate } from "react-router-dom"; // <-- Import useNavigate
 import axios from "axios";
 import "../style/JobDetail.css";
 
 const InfoRow = ({ label, value, isEmail }) => (
   <p>
     <strong>{label}:</strong>{" "}
-    {value ? (isEmail ? <a href={`mailto:${value}`}>{value}</a> : value) : "N/A"}
+    {value ? isEmail ? <a href={`mailto:${value}`}>{value}</a> : value : "N/A"}
   </p>
 );
 
 function JobDetails() {
   const { id } = useParams();
-  const navigate = useNavigate();  // <-- Initialize navigate
+  const navigate = useNavigate(); // <-- Initialize navigate
   const [jobData, setJobData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -23,7 +23,7 @@ function JobDetails() {
       try {
         setLoading(true);
         const { data } = await axios.get(
-          `https://learning-hub-p2yq.onrender.com/api/recruiter/jobs/${id}`
+          `https://edu-learning-hub.onrender.com/api/recruiter/jobs/${id}`
         );
         setJobData(data);
         setError(null);
@@ -78,7 +78,7 @@ function JobDetails() {
       {/* Back Button */}
       <button
         className="job-details-back-btn"
-        onClick={() => navigate(-1)}  // <-- Go back one page in history
+        onClick={() => navigate(-1)} // <-- Go back one page in history
         style={{
           marginBottom: "1rem",
           padding: "0.5rem 1rem",
@@ -129,7 +129,7 @@ function JobDetails() {
           onClick={async () => {
             try {
               const res = await fetch(
-                `https://learning-hub-p2yq.onrender.com/api/apply/${jobData._id}`
+                `https://edu-learning-hub.onrender.com/api/apply/${jobData._id}`
               );
               const data = await res.json();
               if (data.applicationLink) {

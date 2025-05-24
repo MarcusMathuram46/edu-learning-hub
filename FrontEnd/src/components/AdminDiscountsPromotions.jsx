@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../style/AdminDiscountsPromotions.css";
 
-const API_URL = "https://learning-hub-p2yq.onrender.com/api/discounts"; // Change this if you're hosting it elsewhere
+const API_URL = "https://edu-learning-hub.onrender.com/api/discounts"; // Change this if you're hosting it elsewhere
 
 const AdminDiscountsPromotions = () => {
   const [discounts, setDiscounts] = useState([]);

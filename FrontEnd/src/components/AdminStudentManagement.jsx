@@ -23,7 +23,7 @@ const AdminStudentDetail = () => {
     const fetchStudentDetails = async () => {
       try {
         const res = await axios.get(
-          `https://learning-hub-p2yq.onrender.com/api/students/${id}`
+          `https://edu-learning-hub.onrender.com/api/students/${id}`
         );
         const studentData = res.data;
         setStudent(studentData);
@@ -38,7 +38,7 @@ const AdminStudentDetail = () => {
     const fetchAttendance = async () => {
       try {
         const res = await axios.get(
-          `https://learning-hub-p2yq.onrender.com/api/students/${id}`
+          `https://edu-learning-hub.onrender.com/api/students/${id}`
         );
         const attendanceData = res.data.attendance; // Assuming attendance is nested in the student document
         setAttendance(attendanceData);
@@ -50,7 +50,7 @@ const AdminStudentDetail = () => {
     const fetchCertificates = async () => {
       try {
         const res = await axios.get(
-          `https://learning-hub-p2yq.onrender.com/api/students/${id}/certificates`
+          `https://edu-learning-hub.onrender.com/api/students/${id}/certificates`
         );
 
         setCertificates(res.data);
@@ -78,7 +78,7 @@ const AdminStudentDetail = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `https://learning-hub-p2yq.onrender.com/api/students/${id}/certificates`,
+        `https://edu-learning-hub.onrender.com/api/students/${id}/certificates`,
         newCertificate
       );
       setCertificates(res.data.certificates);
@@ -141,10 +141,10 @@ const AdminStudentDetail = () => {
           <motion.div className="col-md-3 text-center admin-student-detail-profile">
             <img
               src={
-                    student.photo
-                      ? `https://learning-hub-p2yq.onrender.com${student.photo}`
-                      : "https://via.placeholder.com/40" // Or your custom default image
-                  }
+                student.photo
+                  ? `https://edu-learning-hub.onrender.com${student.photo}`
+                  : "https://via.placeholder.com/40" // Or your custom default image
+              }
               alt="student"
               className="img-fluid rounded-circle mb-2"
               style={{ width: "120px", height: "120px", objectFit: "cover" }}
@@ -325,7 +325,7 @@ const AdminStudents = () => {
   const fetchStudents = async () => {
     try {
       const { data } = await axios.get(
-        "https://learning-hub-p2yq.onrender.com/api/students"
+        "https://edu-learning-hub.onrender.com/api/students"
       );
       setStudents(data);
     } catch (error) {
@@ -336,7 +336,7 @@ const AdminStudents = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `https://learning-hub-p2yq.onrender.com/api/students/${id}`
+        `https://edu-learning-hub.onrender.com/api/students/${id}`
       );
       setStudents((prev) => prev.filter((s) => s._id !== id));
     } catch (error) {
@@ -345,41 +345,40 @@ const AdminStudents = () => {
   };
 
   const handleAddStudent = async () => {
-  try {
-    const formData = new FormData();
-    formData.append("name", newStudent.name);
-    formData.append("course", newStudent.course);
-    formData.append("status", newStudent.status);
-    formData.append("email", newStudent.email);
-    formData.append("mobile", newStudent.mobile);
-    if (newStudent.photo) {
-      formData.append("photo", newStudent.photo);
-    }
-
-    const { data } = await axios.post(
-      "https://learning-hub-p2yq.onrender.com/api/students",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+    try {
+      const formData = new FormData();
+      formData.append("name", newStudent.name);
+      formData.append("course", newStudent.course);
+      formData.append("status", newStudent.status);
+      formData.append("email", newStudent.email);
+      formData.append("mobile", newStudent.mobile);
+      if (newStudent.photo) {
+        formData.append("photo", newStudent.photo);
       }
-    );
 
-    setStudents([...students, data]);
-    setNewStudent({
-      name: "",
-      course: "",
-      status: "Active",
-      photo: "",
-      email: "",
-      mobile: "",
-    });
-  } catch (error) {
-    console.error("Error adding student:", error);
-  }
-};
+      const { data } = await axios.post(
+        "https://edu-learning-hub.onrender.com/api/students",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
+      setStudents([...students, data]);
+      setNewStudent({
+        name: "",
+        course: "",
+        status: "Active",
+        photo: "",
+        email: "",
+        mobile: "",
+      });
+    } catch (error) {
+      console.error("Error adding student:", error);
+    }
+  };
 
   const handleEdit = (student) => {
     setEditId(student._id);
@@ -389,7 +388,7 @@ const AdminStudents = () => {
   const handleSaveEdit = async () => {
     try {
       const { data } = await axios.put(
-        `https://learning-hub-p2yq.onrender.com/api/students/${editId}`,
+        `https://edu-learning-hub.onrender.com/api/students/${editId}`,
         editedStudent
       );
       setStudents((prev) =>
@@ -549,7 +548,7 @@ const AdminStudents = () => {
                 <img
                   src={
                     student.photo
-                      ? `https://learning-hub-p2yq.onrender.com${student.photo}`
+                      ? `https://edu-learning-hub.onrender.com${student.photo}`
                       : "https://via.placeholder.com/40" // Or your custom default image
                   }
                   alt="student"

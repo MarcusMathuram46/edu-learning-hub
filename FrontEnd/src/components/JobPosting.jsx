@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import "../style/JobPosting.css";
 
-const API_BASE = "https://learning-hub-p2yq.onrender.com/api/recruiter/jobs";
+const API_BASE = "https://edu-learning-hub.onrender.com/api/recruiter/jobs";
 
 const JobPosting = () => {
   const [formData, setFormData] = useState({
@@ -116,7 +116,8 @@ const JobPosting = () => {
     try {
       setLoading(true);
       const recruiterId = localStorage.getItem("recruiterId");
-      if (!recruiterId) throw new Error("Recruiter ID not found in localStorage.");
+      if (!recruiterId)
+        throw new Error("Recruiter ID not found in localStorage.");
 
       const dataToSend = {
         ...formData,
@@ -138,10 +139,15 @@ const JobPosting = () => {
 
       if (!res.ok) {
         const errMsg = await res.json();
-        throw new Error(errMsg.message || (isEditing ? "Failed to update job" : "Failed to post job"));
+        throw new Error(
+          errMsg.message ||
+            (isEditing ? "Failed to update job" : "Failed to post job")
+        );
       }
 
-      alert(isEditing ? "Job Updated Successfully!" : "Job Posted Successfully!");
+      alert(
+        isEditing ? "Job Updated Successfully!" : "Job Posted Successfully!"
+      );
       clearForm();
     } catch (err) {
       alert(err.message);
@@ -157,14 +163,16 @@ const JobPosting = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <h2 className="job-posting-title">{isEditing ? "Edit Job" : "Post a Job"}</h2>
+      <h2 className="job-posting-title">
+        {isEditing ? "Edit Job" : "Post a Job"}
+      </h2>
 
       <form className="job-posting-form" onSubmit={handleSubmit} noValidate>
         {/* Job Title */}
         <div className="job-posting-form-group">
           <label className="job-posting-label">Job Title *</label>
           <input
-          className="job-posting-input"
+            className="job-posting-input"
             type="text"
             name="jobTitle"
             value={formData.jobTitle}
@@ -225,7 +233,7 @@ const JobPosting = () => {
           <div className="job-posting-form-group">
             <label className="job-posting-label">Workplace Type *</label>
             <select
-            className="job-posting-select"
+              className="job-posting-select"
               name="workplaceType"
               value={formData.workplaceType}
               onChange={handleChange}
@@ -289,7 +297,7 @@ const JobPosting = () => {
         <div className="job-posting-form-group">
           <label className="job-posting-label">Number of Vacancies *</label>
           <input
-          className="job-posting-input"
+            className="job-posting-input"
             type="number"
             min="1"
             name="vacancies"
@@ -372,7 +380,7 @@ const JobPosting = () => {
         <div className="job-posting-form-group">
           <label className="job-posting-label">Job Benefits</label>
           <textarea
-          className="job-posting-textarea"
+            className="job-posting-textarea"
             name="jobBenefits"
             value={formData.jobBenefits}
             onChange={handleChange}
@@ -385,7 +393,7 @@ const JobPosting = () => {
         <div className="job-posting-form-group">
           <label className="job-posting-label">Application Deadline</label>
           <input
-          className="job-posting-input"
+            className="job-posting-input"
             type="date"
             name="applicationDeadline"
             value={formData.applicationDeadline}
@@ -397,7 +405,7 @@ const JobPosting = () => {
         <div className="job-posting-form-group">
           <label className="job-posting-label">Apply Link URL *</label>
           <input
-          className="job-posting-input"
+            className="job-posting-input"
             type="url"
             name="applicationLink"
             value={formData.applicationLink}
@@ -411,7 +419,7 @@ const JobPosting = () => {
         <div className="job-posting-form-group">
           <label className="job-posting-label">Contact Email *</label>
           <input
-          className="job-posting-input"
+            className="job-posting-input"
             type="email"
             name="contactEmail"
             value={formData.contactEmail}
@@ -429,7 +437,13 @@ const JobPosting = () => {
             whileTap={{ scale: 0.95 }}
             disabled={loading}
           >
-            {loading ? (isEditing ? "Updating..." : "Posting...") : isEditing ? "Update Job" : "Post Job"}
+            {loading
+              ? isEditing
+                ? "Updating..."
+                : "Posting..."
+              : isEditing
+              ? "Update Job"
+              : "Post Job"}
           </motion.button>
 
           {isEditing && (

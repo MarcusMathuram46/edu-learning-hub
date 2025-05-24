@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import axios from 'axios';
-import '../style/RecruiterJobs.css';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import axios from "axios";
+import "../style/RecruiterJobs.css";
 
 function RecruiterJobs() {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingJob, setEditingJob] = useState(null);
   const [formData, setFormData] = useState({
-    jobTitle: '',
-    location: '',
-    employmentType: '',
-    industry: '',
+    jobTitle: "",
+    location: "",
+    employmentType: "",
+    industry: "",
   });
 
   useEffect(() => {
@@ -20,10 +20,12 @@ function RecruiterJobs() {
 
   const fetchJobs = async () => {
     try {
-      const response = await axios.get('https://learning-hub-p2yq.onrender.com/api/recruiter/jobs');
+      const response = await axios.get(
+        "https://edu-learning-hub.onrender.com/api/recruiter/jobs"
+      );
       setJobs(response.data);
     } catch (error) {
-      console.error('Error fetching jobs:', error);
+      console.error("Error fetching jobs:", error);
     } finally {
       setLoading(false);
     }
@@ -31,10 +33,12 @@ function RecruiterJobs() {
 
   const deleteJob = async (id) => {
     try {
-      await axios.delete(`https://learning-hub-p2yq.onrender.com/api/recruiter/jobs/${id}`);
+      await axios.delete(
+        `https://edu-learning-hub.onrender.com/api/recruiter/jobs/${id}`
+      );
       setJobs((prevJobs) => prevJobs.filter((job) => job._id !== id));
     } catch (error) {
-      console.error('Error deleting job:', error);
+      console.error("Error deleting job:", error);
     }
   };
 
@@ -44,7 +48,7 @@ function RecruiterJobs() {
       jobTitle: job.jobTitle,
       location: job.location,
       employmentType: job.employmentType,
-      industry: job.industry || '',
+      industry: job.industry || "",
     });
   };
 
@@ -56,22 +60,35 @@ function RecruiterJobs() {
   const handleUpdateJob = async () => {
     try {
       const updatedJob = { ...formData };
-      await axios.put(`https://learning-hub-p2yq.onrender.com/api/recruiter/jobs/${editingJob}`, updatedJob);
+      await axios.put(
+        `https://edu-learning-hub.onrender.com/api/recruiter/jobs/${editingJob}`,
+        updatedJob
+      );
       setJobs((prevJobs) =>
         prevJobs.map((job) =>
           job._id === editingJob ? { ...job, ...updatedJob } : job
         )
       );
       setEditingJob(null);
-      setFormData({ jobTitle: '', location: '', employmentType: '', industry: '' });
+      setFormData({
+        jobTitle: "",
+        location: "",
+        employmentType: "",
+        industry: "",
+      });
     } catch (error) {
-      console.error('Error updating job:', error);
+      console.error("Error updating job:", error);
     }
   };
 
   const handleCancelEdit = () => {
     setEditingJob(null);
-    setFormData({ jobTitle: '', location: '', employmentType: '', industry: '' });
+    setFormData({
+      jobTitle: "",
+      location: "",
+      employmentType: "",
+      industry: "",
+    });
   };
 
   return (
@@ -121,10 +138,16 @@ function RecruiterJobs() {
                   placeholder="Industry"
                 />
                 <div className="recruiter-jobs-actions">
-                  <button className="recruiter-jobs-btn update" onClick={handleUpdateJob}>
+                  <button
+                    className="recruiter-jobs-btn update"
+                    onClick={handleUpdateJob}
+                  >
                     Update
                   </button>
-                  <button className="recruiter-jobs-btn cancel" onClick={handleCancelEdit}>
+                  <button
+                    className="recruiter-jobs-btn cancel"
+                    onClick={handleCancelEdit}
+                  >
                     Cancel
                   </button>
                 </div>
@@ -134,24 +157,30 @@ function RecruiterJobs() {
                 key={job._id}
                 className="recruiter-jobs-card"
                 whileHover={{ scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 150 }}
+                transition={{ type: "spring", stiffness: 150 }}
               >
                 <div className="recruiter-jobs-info">
                   <h3 className="recruiter-jobs-job-title">{job.jobTitle}</h3>
                   <p className="recruiter-jobs-meta">
-                    {job.location} • {job.employmentType} • Posted on{' '}
+                    {job.location} • {job.employmentType} • Posted on{" "}
                     {new Date(job.postedAt).toLocaleDateString()}
                   </p>
                   <p className="recruiter-jobs-applications">
-                    Industry: <strong>{job.industry || 'N/A'}</strong>
+                    Industry: <strong>{job.industry || "N/A"}</strong>
                   </p>
                 </div>
 
                 <div className="recruiter-jobs-actions">
-                  <button className="recruiter-jobs-btn edit" onClick={() => handleEditClick(job)}>
+                  <button
+                    className="recruiter-jobs-btn edit"
+                    onClick={() => handleEditClick(job)}
+                  >
                     Edit
                   </button>
-                  <button className="recruiter-jobs-btn delete" onClick={() => deleteJob(job._id)}>
+                  <button
+                    className="recruiter-jobs-btn delete"
+                    onClick={() => deleteJob(job._id)}
+                  >
                     Delete
                   </button>
                 </div>

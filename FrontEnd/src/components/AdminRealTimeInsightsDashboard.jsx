@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../style/AdminRealTimeInsightsDashboard.css";
 
-const BASE_URL = "https://learning-hub-p2yq.onrender.com/api/insights"; // replace if hosted elsewhere
+const BASE_URL = "https://edu-learning-hub.onrender.com/api/insights"; // replace if hosted elsewhere
 
 const AdminRealTimeInsightsDashboard = () => {
   const [records, setRecords] = useState([]);

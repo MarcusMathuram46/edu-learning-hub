@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://learning-hub-p2yq.onrender.com/api",
+  baseURL: "https://edu-learning-hub.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },

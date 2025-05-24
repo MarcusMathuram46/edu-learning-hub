@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import axios from 'axios';
-import '../style/RecruiterDashboard.css';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import axios from "axios";
+import "../style/RecruiterDashboard.css";
 
 function RecruiterDashboard() {
   const [stats, setStats] = useState([]);
@@ -16,15 +16,27 @@ function RecruiterDashboard() {
         setLoading(true);
 
         const [statsRes, applicationsRes, performanceRes] = await Promise.all([
-          axios.get('https://learning-hub-p2yq.onrender.com/api/recruiter/dashboard/stats', { withCredentials: true }),
-          axios.get('https://learning-hub-p2yq.onrender.com/api/recruiter/dashboard/recent-applications', { withCredentials: true }),
-          axios.get('https://learning-hub-p2yq.onrender.com/api/recruiter/dashboard/job-performance', { withCredentials: true }),
+          axios.get(
+            "https://edu-learning-hub.onrender.com/api/recruiter/dashboard/stats",
+            { withCredentials: true }
+          ),
+          axios.get(
+            "https://edu-learning-hub.onrender.com/api/recruiter/dashboard/recent-applications",
+            { withCredentials: true }
+          ),
+          axios.get(
+            "https://edu-learning-hub.onrender.com/api/recruiter/dashboard/job-performance",
+            { withCredentials: true }
+          ),
         ]);
 
         setStats([
-          { title: 'Total Jobs Posted', count: statsRes.data.totalJobs },
-          { title: 'Active Jobs', count: statsRes.data.activeJobs },
-          { title: 'Total Applications', count: statsRes.data.totalApplications },
+          { title: "Total Jobs Posted", count: statsRes.data.totalJobs },
+          { title: "Active Jobs", count: statsRes.data.activeJobs },
+          {
+            title: "Total Applications",
+            count: statsRes.data.totalApplications,
+          },
         ]);
 
         setRecentApplications(applicationsRes.data); // Should be an array
@@ -32,7 +44,7 @@ function RecruiterDashboard() {
         setLoading(false);
       } catch (err) {
         console.error(err);
-        setError('Failed to load dashboard data.');
+        setError("Failed to load dashboard data.");
         setLoading(false);
       }
     };
@@ -44,7 +56,7 @@ function RecruiterDashboard() {
   if (error) return <p className="error">{error}</p>;
 
   return (
-    <motion.div 
+    <motion.div
       className="recruiter-dashboard"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
@@ -54,11 +66,11 @@ function RecruiterDashboard() {
 
       <div className="recruiter-stats-section">
         {stats.map((stat, index) => (
-          <motion.div 
-            key={index} 
+          <motion.div
+            key={index}
             className="recruiter-stat-card"
             whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 150 }}
+            transition={{ type: "spring", stiffness: 150 }}
           >
             <h3>{stat.count}</h3>
             <p>{stat.title}</p>
@@ -66,7 +78,11 @@ function RecruiterDashboard() {
         ))}
       </div>
 
-      <motion.div className="recruiter-section" initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }}>
+      <motion.div
+        className="recruiter-section"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+      >
         <h3 className="recruiter-section-title">Recent Applications</h3>
         <ul className="recruiter-applications-list">
           {recentApplications.map((app, index) => (
@@ -74,13 +90,19 @@ function RecruiterDashboard() {
               <div className="recruiter-applicant-info">
                 <strong>{app.name}</strong> applied for <em>{app.jobTitle}</em>
               </div>
-              <div className="recruiter-application-time">{app.appliedTime}</div>
+              <div className="recruiter-application-time">
+                {app.appliedTime}
+              </div>
             </li>
           ))}
         </ul>
       </motion.div>
 
-      <motion.div className="recruiter-section" initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }}>
+      <motion.div
+        className="recruiter-section"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+      >
         <h3 className="recruiter-section-title">Job Performance</h3>
         <div className="recruiter-performance-cards">
           <div className="recruiter-performance-card">

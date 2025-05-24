@@ -31,7 +31,7 @@ const AdminBlogWebinar = () => {
   const handleViewRegistrants = async () => {
     try {
       const response = await axios.get(
-        "https://learning-hub-p2yq.onrender.com/api/webinars/registrants"
+        "https://edu-learning-hub.onrender.com/api/webinars/registrants"
       );
       setRegistrants(response.data); // Assuming backend returns an array
       setShowRegistrants(true);
@@ -42,7 +42,7 @@ const AdminBlogWebinar = () => {
   const handleExportAttendance = async () => {
     try {
       const response = await axios.get(
-        "https://learning-hub-p2yq.onrender.com/api/webinars/export",
+        "https://edu-learning-hub.onrender.com/api/webinars/export",
         {
           responseType: "blob", // Important for downloading files
         }
@@ -86,7 +86,7 @@ const AdminBlogWebinar = () => {
       }
 
       const response = await axios.post(
-        "https://learning-hub-p2yq.onrender.com/api/blog",
+        "https://edu-learning-hub.onrender.com/api/blog",
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -104,7 +104,7 @@ const AdminBlogWebinar = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://learning-hub-p2yq.onrender.com/api/webinars",
+        "https://edu-learning-hub.onrender.com/api/webinars",
         {
           title: formData.webinarTitle,
           dateTime: formData.webinarDateTime,

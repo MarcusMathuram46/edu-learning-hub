@@ -14,7 +14,10 @@ const LoginPortal = () => {
 
   useEffect(() => {
     // Check for active session (optional)
-    axios.get("https://learning-hub-p2yq.onrender.com/api/me", { withCredentials: true })
+    axios
+      .get("https://edu-learning-hub.onrender.com/api/me", {
+        withCredentials: true,
+      })
       .then((res) => {
         // Optional auto-redirect if already logged in
         if (res.data?.role === "Student") {
@@ -22,7 +25,10 @@ const LoginPortal = () => {
         }
       })
       .catch((error) => {
-        console.log("Token check:", error.response?.status === 401 ? "No valid session" : error);
+        console.log(
+          "Token check:",
+          error.response?.status === 401 ? "No valid session" : error
+        );
       });
   }, [navigate]);
 
@@ -33,7 +39,7 @@ const LoginPortal = () => {
 
     try {
       const response = await axios.post(
-        "https://learning-hub-p2yq.onrender.com/api/login",
+        "https://edu-learning-hub.onrender.com/api/login",
         { email, password },
         { withCredentials: true }
       );

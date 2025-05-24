@@ -26,7 +26,7 @@ const FilterForm = () => {
 
     try {
       const response = await axios.post(
-        "https://learning-hub-p2yq.onrender.com/api/upload",
+        "https://edu-learning-hub.onrender.com/api/upload",
         formData,
         {
           headers: {
@@ -118,7 +118,7 @@ export default FilterForm;
 //     formData.append("file", file);
 
 //     try {
-//       const response = await axios.post("https://learning-hub-p2yq.onrender.com/api/upload", formData, {
+//       const response = await axios.post("https://edu-learning-hub.onrender.com/api/upload", formData, {
 //         headers: {
 //           "Content-Type": "multipart/form-data",
 //           "Accept": "application/json",

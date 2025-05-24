@@ -9,7 +9,7 @@ const AdminEditStudent = () => {
 
   useEffect(() => {
     axios
-      .get(`https://learning-hub-p2yq.onrender.com/api/students/${id}`)
+      .get(`https://edu-learning-hub.onrender.com/api/students/${id}`)
       .then((res) => {
         setStudentData(res.data);
       });
@@ -24,7 +24,7 @@ const AdminEditStudent = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `https://learning-hub-p2yq.onrender.com/api/students/${id}`,
+        `https://edu-learning-hub.onrender.com/api/students/${id}`,
         studentData
       );
       navigate(`/students/${id}`);

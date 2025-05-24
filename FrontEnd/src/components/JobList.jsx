@@ -16,7 +16,7 @@ function JobList() {
       try {
         setLoading(true);
         const response = await axios.get(
-          "https://learning-hub-p2yq.onrender.com/api/recruiter/jobs"
+          "https://edu-learning-hub.onrender.com/api/recruiter/jobs"
         );
         setJobs(response.data);
       } catch (err) {
@@ -70,7 +70,13 @@ function JobList() {
           className="job-list-search-input"
         />
         <div className="job-list-type-filters">
-          {["Full-time", "Part-time", "Contract", "Internship","Freelance"].map((type) => (
+          {[
+            "Full-time",
+            "Part-time",
+            "Contract",
+            "Internship",
+            "Freelance",
+          ].map((type) => (
             <button
               key={type}
               className={`job-list-type-btn ${
@@ -119,7 +125,7 @@ function JobList() {
                 onClick={async () => {
                   try {
                     const res = await fetch(
-                      `https://learning-hub-p2yq.onrender.com/api/apply/${job._id}`
+                      `https://edu-learning-hub.onrender.com/api/apply/${job._id}`
                     );
                     const data = await res.json();
                     if (data.applicationLink) {

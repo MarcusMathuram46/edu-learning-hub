@@ -15,7 +15,7 @@ const AdminAdmissionsEnrollment = () => {
 
   // Update with your own backend base URL
   const BASE_URL =
-    "https://learning-hub-p2yq.onrender.com/api/decision-insights";
+    "https://edu-learning-hub.onrender.com/api/decision-insights";
 
   useEffect(() => {
     fetchInsights();

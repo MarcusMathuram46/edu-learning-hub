@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../style/AdminCommissionPayouts.css";
 
-const API_BASE =
-  "https://learning-hub-p2yq.onrender.com/api/commission-payouts"; // or your deployed backend URL
+const API_BASE = "https://edu-learning-hub.onrender.com/api/commission-payouts"; // or your deployed backend URL
 
 const AdminCommissionPayouts = () => {
   const [transactions, setTransactions] = useState([]);

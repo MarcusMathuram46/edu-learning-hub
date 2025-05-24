@@ -29,7 +29,7 @@ const CareerContact = () => {
 
     try {
       const response = await axios.post(
-        "https://learning-hub-p2yq.onrender.com/api/contact",
+        "https://edu-learning-hub.onrender.com/api/contact",
         formData
       );
       alert(response.data.message);

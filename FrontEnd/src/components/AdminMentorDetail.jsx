@@ -19,7 +19,7 @@ const AdminMentorDetail = () => {
     const fetchMentorDetails = async () => {
       try {
         const res = await axios.get(
-          `https://learning-hub-p2yq.onrender.com/api/mentors/${id}`
+          `https://edu-learning-hub.onrender.com/api/mentors/${id}`
         );
         setMentor(res.data);
         setSessions(res.data.sessions || []);
@@ -78,7 +78,7 @@ const AdminMentorDetail = () => {
             <img
               src={
                 mentor.photo
-                  ? `https://learning-hub-p2yq.onrender.com${mentor.photo}`
+                  ? `https://edu-learning-hub.onrender.com${mentor.photo}`
                   : "https://via.placeholder.com/40" // Or your custom default image
               }
               alt="mentor"
