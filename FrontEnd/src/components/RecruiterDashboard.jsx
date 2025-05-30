@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import axios from "axios";
-import "../style/RecruiterDashboard.css";
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import axios from 'axios';
+import '../style/RecruiterDashboard.css';
 
 function RecruiterDashboard() {
   const [stats, setStats] = useState([]);
@@ -17,24 +17,24 @@ function RecruiterDashboard() {
 
         const [statsRes, applicationsRes, performanceRes] = await Promise.all([
           axios.get(
-            "https://edu-learning-hub.onrender.com/api/recruiter/dashboard/stats",
-            { withCredentials: true }
+            'https://edu-learning-hub.onrender.com/recruiter/dashboard/stats',
+            { withCredentials: true },
           ),
           axios.get(
-            "https://edu-learning-hub.onrender.com/api/recruiter/dashboard/recent-applications",
-            { withCredentials: true }
+            'https://edu-learning-hub.onrender.com/recruiter/dashboard/recent-applications',
+            { withCredentials: true },
           ),
           axios.get(
-            "https://edu-learning-hub.onrender.com/api/recruiter/dashboard/job-performance",
-            { withCredentials: true }
+            'https://edu-learning-hub.onrender.com/recruiter/dashboard/job-performance',
+            { withCredentials: true },
           ),
         ]);
 
         setStats([
-          { title: "Total Jobs Posted", count: statsRes.data.totalJobs },
-          { title: "Active Jobs", count: statsRes.data.activeJobs },
+          { title: 'Total Jobs Posted', count: statsRes.data.totalJobs },
+          { title: 'Active Jobs', count: statsRes.data.activeJobs },
           {
-            title: "Total Applications",
+            title: 'Total Applications',
             count: statsRes.data.totalApplications,
           },
         ]);
@@ -44,7 +44,7 @@ function RecruiterDashboard() {
         setLoading(false);
       } catch (err) {
         console.error(err);
-        setError("Failed to load dashboard data.");
+        setError('Failed to load dashboard data.');
         setLoading(false);
       }
     };
@@ -70,7 +70,7 @@ function RecruiterDashboard() {
             key={index}
             className="recruiter-stat-card"
             whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 150 }}
+            transition={{ type: 'spring', stiffness: 150 }}
           >
             <h3>{stat.count}</h3>
             <p>{stat.title}</p>

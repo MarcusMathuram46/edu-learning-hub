@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "../style/AdminHRAndEmployeeTraining.css";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import '../style/AdminHRAndEmployeeTraining.css';
 
 const AdminHRAndEmployeeTraining = () => {
   const [employees, setEmployees] = useState([]);
   const [employee, setEmployee] = useState({
-    name: "",
-    department: "",
-    skillLevel: "",
-    progress: "",
-    status: "Not Started",
+    name: '',
+    department: '',
+    skillLevel: '',
+    progress: '',
+    status: 'Not Started',
   });
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
-  const API_URL = "https://edu-learning-hub.onrender.com/api/employees"; // update with your backend URL
+  const API_URL = 'https://edu-learning-hub.onrender.com/employees'; // update with your backend URL
 
   // Fetch employees on load
   useEffect(() => {
@@ -26,7 +26,7 @@ const AdminHRAndEmployeeTraining = () => {
       const res = await axios.get(API_URL);
       setEmployees(res.data);
     } catch (err) {
-      console.error("Error fetching employees:", err);
+      console.error('Error fetching employees:', err);
     }
   };
 
@@ -45,15 +45,15 @@ const AdminHRAndEmployeeTraining = () => {
         await axios.post(API_URL, employee);
       }
       setEmployee({
-        name: "",
-        department: "",
-        skillLevel: "",
-        progress: "",
-        status: "Not Started",
+        name: '',
+        department: '',
+        skillLevel: '',
+        progress: '',
+        status: 'Not Started',
       });
       fetchEmployees();
     } catch (err) {
-      console.error("Error saving employee:", err);
+      console.error('Error saving employee:', err);
     }
   };
 
@@ -62,7 +62,7 @@ const AdminHRAndEmployeeTraining = () => {
       await axios.delete(`${API_URL}/${id}`);
       fetchEmployees();
     } catch (err) {
-      console.error("Error deleting employee:", err);
+      console.error('Error deleting employee:', err);
     }
   };
 
@@ -124,7 +124,7 @@ const AdminHRAndEmployeeTraining = () => {
           <option>Completed</option>
         </select>
         <button type="submit">
-          {isEditing ? "Update Employee" : "Add Employee"}
+          {isEditing ? 'Update Employee' : 'Add Employee'}
         </button>
       </form>
 

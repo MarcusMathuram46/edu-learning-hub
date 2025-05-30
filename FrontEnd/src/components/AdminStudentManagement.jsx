@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { motion } from "framer-motion";
-import { Spinner } from "react-bootstrap";
-import "../style/AdminStudents.css";
-import "../style/AdminStudentDetail.css";
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { motion } from 'framer-motion';
+import { Spinner } from 'react-bootstrap';
+import '../style/AdminStudents.css';
+import '../style/AdminStudentDetail.css';
 // ----------------------
 // Student Detail Component
 // ----------------------
@@ -15,7 +15,7 @@ const AdminStudentDetail = () => {
   const [certificates, setCertificates] = useState([]);
   const [loading, setLoading] = useState(true); // Manage loading state
   const [error, setError] = useState(null); // Manage error state
-  const [newCertificate, setNewCertificate] = useState({ name: "", link: "" }); // Form state for new certificate
+  const [newCertificate, setNewCertificate] = useState({ name: '', link: '' }); // Form state for new certificate
   const navigate = useNavigate();
 
   // Fetch student details, attendance, and certificates
@@ -23,14 +23,14 @@ const AdminStudentDetail = () => {
     const fetchStudentDetails = async () => {
       try {
         const res = await axios.get(
-          `https://edu-learning-hub.onrender.com/api/students/${id}`
+          `https://edu-learning-hub.onrender.com/students/${id}`,
         );
         const studentData = res.data;
         setStudent(studentData);
         setAttendance(studentData.attendance || []);
         setLoading(false);
       } catch (err) {
-        setError("Error fetching student details.");
+        setError('Error fetching student details.');
         setLoading(false);
       }
     };
@@ -38,24 +38,24 @@ const AdminStudentDetail = () => {
     const fetchAttendance = async () => {
       try {
         const res = await axios.get(
-          `https://edu-learning-hub.onrender.com/api/students/${id}`
+          `https://edu-learning-hub.onrender.com/students/${id}`,
         );
         const attendanceData = res.data.attendance; // Assuming attendance is nested in the student document
         setAttendance(attendanceData);
       } catch (err) {
-        console.error("Error fetching attendance data:", err);
+        console.error('Error fetching attendance data:', err);
       }
     };
 
     const fetchCertificates = async () => {
       try {
         const res = await axios.get(
-          `https://edu-learning-hub.onrender.com/api/students/${id}/certificates`
+          `https://edu-learning-hub.onrender.com/students/${id}/certificates`,
         );
 
         setCertificates(res.data);
       } catch (err) {
-        console.error("Error fetching certificates:", err);
+        console.error('Error fetching certificates:', err);
       }
     };
 
@@ -78,13 +78,13 @@ const AdminStudentDetail = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `https://edu-learning-hub.onrender.com/api/students/${id}/certificates`,
-        newCertificate
+        `https://edu-learning-hub.onrender.com/students/${id}/certificates`,
+        newCertificate,
       );
       setCertificates(res.data.certificates);
-      setNewCertificate({ name: "", link: "" }); // Clear form after submission
+      setNewCertificate({ name: '', link: '' }); // Clear form after submission
     } catch (err) {
-      setError("Error adding certificate.");
+      setError('Error adding certificate.');
     }
   };
 
@@ -126,11 +126,11 @@ const AdminStudentDetail = () => {
           </h4>
           <span
             className={`badge bg-${
-              student.status === "Active"
-                ? "success"
-                : student.status === "Inactive"
-                ? "secondary"
-                : "warning"
+              student.status === 'Active'
+                ? 'success'
+                : student.status === 'Inactive'
+                ? 'secondary'
+                : 'warning'
             }`}
           >
             {student.status}
@@ -142,18 +142,18 @@ const AdminStudentDetail = () => {
             <img
               src={
                 student.photo
-                  ? `https://edu-learning-hub.onrender.com${student.photo}`
-                  : "https://via.placeholder.com/40" // Or your custom default image
+                  ? `https://learning-hub-p2yq.onrender.com${student.photo}`
+                  : 'https://via.placeholder.com/40' // Or your custom default image
               }
               alt="student"
               className="img-fluid rounded-circle mb-2"
-              style={{ width: "120px", height: "120px", objectFit: "cover" }}
+              style={{ width: '120px', height: '120px', objectFit: 'cover' }}
             />
             <p className="text-muted admin-student-detail-text">
               {student.email}
             </p>
             <p className="text-muted admin-student-detail-text">
-              {student.mobile || "mobile not provided"}
+              {student.mobile || 'mobile not provided'}
             </p>
           </motion.div>
 
@@ -163,7 +163,7 @@ const AdminStudentDetail = () => {
             </motion.h5>
             <div
               className="progress mb-3 admin-student-detail-progress"
-              style={{ height: "20px" }}
+              style={{ height: '20px' }}
             >
               <div
                 className="progress-bar progress-bar-striped progress-bar-animated"
@@ -185,7 +185,7 @@ const AdminStudentDetail = () => {
                     ₹{p.amount}
                     <span
                       className={`badge bg-${
-                        p.status === "Paid" ? "success" : "danger"
+                        p.status === 'Paid' ? 'success' : 'danger'
                       }`}
                     >
                       {p.status}
@@ -262,7 +262,7 @@ const AdminStudentDetail = () => {
                     {log.date}
                     <span
                       className={`badge bg-${
-                        log.status === "Present" ? "success" : "danger"
+                        log.status === 'Present' ? 'success' : 'danger'
                       }`}
                     >
                       {log.status}
@@ -303,16 +303,16 @@ export default AdminStudentDetail;
 // ----------------------
 const AdminStudents = () => {
   const [students, setStudents] = useState([]);
-  const [search, setSearch] = useState("");
-  const [courseFilter, setCourseFilter] = useState("");
-  const [statusFilter, setStatusFilter] = useState("");
+  const [search, setSearch] = useState('');
+  const [courseFilter, setCourseFilter] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
   const [newStudent, setNewStudent] = useState({
-    name: "",
-    course: "",
-    status: "Active",
-    photo: "",
-    email: "",
-    mobile: "",
+    name: '',
+    course: '',
+    status: 'Active',
+    photo: '',
+    email: '',
+    mobile: '',
   });
   const [editId, setEditId] = useState(null);
   const [editedStudent, setEditedStudent] = useState({});
@@ -325,58 +325,58 @@ const AdminStudents = () => {
   const fetchStudents = async () => {
     try {
       const { data } = await axios.get(
-        "https://edu-learning-hub.onrender.com/api/students"
+        'https://edu-learning-hub.onrender.com/students',
       );
       setStudents(data);
     } catch (error) {
-      console.error("Error fetching students:", error);
+      console.error('Error fetching students:', error);
     }
   };
 
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `https://edu-learning-hub.onrender.com/api/students/${id}`
+        `https://edu-learning-hub.onrender.com/students/${id}`,
       );
       setStudents((prev) => prev.filter((s) => s._id !== id));
     } catch (error) {
-      console.error("Error deleting student:", error);
+      console.error('Error deleting student:', error);
     }
   };
 
   const handleAddStudent = async () => {
     try {
       const formData = new FormData();
-      formData.append("name", newStudent.name);
-      formData.append("course", newStudent.course);
-      formData.append("status", newStudent.status);
-      formData.append("email", newStudent.email);
-      formData.append("mobile", newStudent.mobile);
+      formData.append('name', newStudent.name);
+      formData.append('course', newStudent.course);
+      formData.append('status', newStudent.status);
+      formData.append('email', newStudent.email);
+      formData.append('mobile', newStudent.mobile);
       if (newStudent.photo) {
-        formData.append("photo", newStudent.photo);
+        formData.append('photo', newStudent.photo);
       }
 
       const { data } = await axios.post(
-        "https://edu-learning-hub.onrender.com/api/students",
+        'https://edu-learning-hub.onrender.com/students',
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
-        }
+        },
       );
 
       setStudents([...students, data]);
       setNewStudent({
-        name: "",
-        course: "",
-        status: "Active",
-        photo: "",
-        email: "",
-        mobile: "",
+        name: '',
+        course: '',
+        status: 'Active',
+        photo: '',
+        email: '',
+        mobile: '',
       });
     } catch (error) {
-      console.error("Error adding student:", error);
+      console.error('Error adding student:', error);
     }
   };
 
@@ -388,29 +388,29 @@ const AdminStudents = () => {
   const handleSaveEdit = async () => {
     try {
       const { data } = await axios.put(
-        `https://edu-learning-hub.onrender.com/api/students/${editId}`,
-        editedStudent
+        `https://edu-learning-hub.onrender.com/students/${editId}`,
+        editedStudent,
       );
       setStudents((prev) =>
-        prev.map((student) => (student._id === editId ? data : student))
+        prev.map((student) => (student._id === editId ? data : student)),
       );
       setEditId(null);
       setEditedStudent({});
     } catch (error) {
-      console.error("Error updating student:", error);
+      console.error('Error updating student:', error);
     }
   };
 
   const getStatusBadgeClass = (status) => {
     switch (status) {
-      case "Active":
-        return "success";
-      case "Inactive":
-        return "secondary";
-      case "Completed":
-        return "warning";
+      case 'Active':
+        return 'success';
+      case 'Inactive':
+        return 'secondary';
+      case 'Completed':
+        return 'warning';
       default:
-        return "light";
+        return 'light';
     }
   };
 
@@ -419,7 +419,7 @@ const AdminStudents = () => {
       (s) =>
         s.name.toLowerCase().includes(search.toLowerCase()) &&
         (courseFilter ? s.course === courseFilter : true) &&
-        (statusFilter ? s.status === statusFilter : true)
+        (statusFilter ? s.status === statusFilter : true),
     );
   }, [students, search, courseFilter, statusFilter]);
 
@@ -548,16 +548,16 @@ const AdminStudents = () => {
                 <img
                   src={
                     student.photo
-                      ? `https://edu-learning-hub.onrender.com${student.photo}`
-                      : "https://via.placeholder.com/40" // Or your custom default image
+                      ? `https://learning-hub-p2yq.onrender.com${student.photo}`
+                      : 'https://via.placeholder.com/40' // Or your custom default image
                   }
                   alt="student"
                   style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                    objectPosition: "top",
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                    objectPosition: 'top',
                   }}
                 />
               </td>
@@ -575,7 +575,7 @@ const AdminStudents = () => {
                 ) : (
                   <span
                     onClick={() => navigate(`/admin/students/${student._id}`)}
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: 'pointer' }}
                   >
                     {student.name}
                   </span>
@@ -614,7 +614,7 @@ const AdminStudents = () => {
                 ) : (
                   <span
                     className={`badge bg-${getStatusBadgeClass(
-                      student.status
+                      student.status,
                     )}`}
                   >
                     {student.status}

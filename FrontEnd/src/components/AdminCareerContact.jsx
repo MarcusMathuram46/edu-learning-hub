@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import axios from "axios";
-import "../style/AdminCareerContact.css";
+import React, { useState } from 'react';
+import axios from 'axios';
+import '../style/AdminCareerContact.css';
 
 const AdminCareerContact = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    learningDomain: "",
+    name: '',
+    email: '',
+    phone: '',
+    learningDomain: '',
   });
 
   const handleChange = (e) => {
@@ -23,19 +23,19 @@ const AdminCareerContact = () => {
       !formData.phone ||
       !formData.learningDomain
     ) {
-      alert("Please fill all fields.");
+      alert('Please fill all fields.');
       return;
     }
 
     try {
       const response = await axios.post(
-        "https://edu-learning-hub.onrender.com/api/contact",
-        formData
+        'https://edu-learning-hub.onrender.com/contact',
+        formData,
       );
       alert(response.data.message);
     } catch (error) {
-      console.error("Error:", error.response?.data || error.message);
-      alert("Failed to submit form.");
+      console.error('Error:', error.response?.data || error.message);
+      alert('Failed to submit form.');
     }
   };
 

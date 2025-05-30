@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import { motion } from "framer-motion";
-import "../style/AdminStudentDetail.css";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { motion } from 'framer-motion';
+import '../style/AdminStudentDetail.css';
 
 const AdminStudentDetail = () => {
   const { id } = useParams();
@@ -10,9 +10,9 @@ const AdminStudentDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`https://edu-learning-hub.onrender.com/api/students/${id}`)
+      .get(`https://edu-learning-hub.onrender.com/students/${id}`)
       .then((res) => setStudent(res.data))
-      .catch((err) => console.error("Error fetching student details", err));
+      .catch((err) => console.error('Error fetching student details', err));
   }, [id]);
 
   if (!student) return <div className="text-center mt-5">Loading...</div>;
@@ -31,11 +31,11 @@ const AdminStudentDetail = () => {
           </h4>
           <span
             className={`badge bg-${
-              student.status === "Active"
-                ? "success"
-                : student.status === "Inactive"
-                ? "secondary"
-                : "warning"
+              student.status === 'Active'
+                ? 'success'
+                : student.status === 'Inactive'
+                ? 'secondary'
+                : 'warning'
             }`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -57,11 +57,11 @@ const AdminStudentDetail = () => {
               src={student.photo}
               alt="student"
               className="img-fluid rounded-circle mb-2"
-              style={{ width: "120px", height: "120px", objectFit: "cover" }}
+              style={{ width: '120px', height: '120px', objectFit: 'cover' }}
             />
             <p className="text-muted studentDetailText">{student.email}</p>
             <p className="text-muted studentDetailText">
-              {student.phone || "Phone not provided"}
+              {student.phone || 'Phone not provided'}
             </p>
           </motion.div>
 
@@ -83,7 +83,7 @@ const AdminStudentDetail = () => {
             </motion.h5>
             <motion.div
               className="progress mb-3 studentDetailProgress"
-              style={{ height: "20px" }}
+              style={{ height: '20px' }}
               initial={{ width: 0 }}
               animate={{ width: `${student.progress || 0}%` }}
               transition={{ duration: 1 }}
@@ -117,7 +117,7 @@ const AdminStudentDetail = () => {
                     ₹{p.amount}
                     <span
                       className={`badge bg-${
-                        p.status === "Paid" ? "success" : "danger"
+                        p.status === 'Paid' ? 'success' : 'danger'
                       }`}
                     >
                       {p.status}
@@ -200,7 +200,7 @@ const AdminStudentDetail = () => {
                     {log.date}
                     <span
                       className={`badge bg-${
-                        log.status === "Present" ? "success" : "danger"
+                        log.status === 'Present' ? 'success' : 'danger'
                       }`}
                     >
                       {log.status}

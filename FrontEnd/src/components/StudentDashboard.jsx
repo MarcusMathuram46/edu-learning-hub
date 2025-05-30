@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import axios from "axios";
-import "../style/StudentDashboard.css";
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import axios from 'axios';
+import '../style/StudentDashboard.css';
 
 function StudentDashboard() {
   const [overviewStats, setOverviewStats] = useState([]);
@@ -13,24 +13,24 @@ function StudentDashboard() {
     const fetchDashboardData = async () => {
       try {
         const response = await axios.get(
-          "https://edu-learning-hub.onrender.com/api/student/dashboard",
+          'https://edu-learning-hub.onrender.com/student/dashboard',
           {
             withCredentials: true, // 💡 This sends the JWT cookie
-          }
+          },
         );
 
         const { overviewStats, appliedJobs, savedJobs } = response.data;
         setOverviewStats([
-          { label: "Applied Jobs", count: overviewStats.appliedJobs },
-          { label: "Saved Jobs", count: overviewStats.savedJobs },
-          { label: "Profile Views", count: overviewStats.profileViews },
+          { label: 'Applied Jobs', count: overviewStats.appliedJobs },
+          { label: 'Saved Jobs', count: overviewStats.savedJobs },
+          { label: 'Profile Views', count: overviewStats.profileViews },
         ]);
         setAppliedJobs(appliedJobs);
         setSavedJobs(savedJobs);
       } catch (error) {
         console.error(
-          "Error fetching dashboard data:",
-          error.response?.data || error.message
+          'Error fetching dashboard data:',
+          error.response?.data || error.message,
         );
       } finally {
         setLoading(false);
@@ -57,7 +57,7 @@ function StudentDashboard() {
             key={idx}
             className="student-dashboard-stat-card"
             whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 140 }}
+            transition={{ type: 'spring', stiffness: 140 }}
           >
             <p className="student-dashboard-stat-count">{stat.count}</p>
             <p className="student-dashboard-stat-label">{stat.label}</p>
@@ -86,7 +86,7 @@ function StudentDashboard() {
                 <span
                   className={`student-dashboard-status status-${job.status
                     .toLowerCase()
-                    .replace(/\s+/g, "-")}`}
+                    .replace(/\s+/g, '-')}`}
                 >
                   {job.status}
                 </span>
@@ -106,7 +106,7 @@ function StudentDashboard() {
             <motion.li
               key={job._id || job.id}
               className="student-dashboard-saved-item"
-              whileHover={{ boxShadow: "0 8px 20px rgba(0,0,0,0.1)" }}
+              whileHover={{ boxShadow: '0 8px 20px rgba(0,0,0,0.1)' }}
               transition={{ duration: 0.3 }}
             >
               <div className="student-dashboard-saved-info">

@@ -1,72 +1,72 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import "../style/LoginPortal.css";
-import { useAuth } from "../context/AuthContext"; // import auth context
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import '../style/LoginPortal.css';
+import { useAuth } from '../context/AuthContext'; // import auth context
 
 const LoginPortal = () => {
   const navigate = useNavigate();
   const { login } = useAuth(); // get login function from context
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   useEffect(() => {
     // Check for active session (optional)
     axios
-      .get("https://edu-learning-hub.onrender.com/api/me", {
+      .get('https://edu-learning-hub.onrender.com/me', {
         withCredentials: true,
       })
       .then((res) => {
         // Optional auto-redirect if already logged in
-        if (res.data?.role === "Student") {
-          navigate("/student/dashboard");
+        if (res.data?.role === 'Student') {
+          navigate('/student/dashboard');
         }
       })
       .catch((error) => {
         console.log(
-          "Token check:",
-          error.response?.status === 401 ? "No valid session" : error
+          'Token check:',
+          error.response?.status === 401 ? 'No valid session' : error,
         );
       });
   }, [navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    if (!email) return alert("Please Enter Valid Email");
-    if (!password) return alert("Please Fill Password");
+    if (!email) return alert('Please Enter Valid Email');
+    if (!password) return alert('Please Fill Password');
 
     try {
       const response = await axios.post(
-        "https://edu-learning-hub.onrender.com/api/login",
+        'https://edu-learning-hub.onrender.com/login',
         { email, password },
-        { withCredentials: true }
+        { withCredentials: true },
       );
 
       const { token, role } = response.data;
 
       if (!token || !role) {
-        alert("Invalid response from server");
+        alert('Invalid response from server');
         return;
       }
 
-      if (role !== "user") {
+      if (role !== 'user') {
         alert("You're not authorized as a Student.");
         return;
       }
 
       // Set token and role in AuthContext
-      localStorage.setItem("token", token);
-      localStorage.setItem("role", role);
+      localStorage.setItem('token', token);
+      localStorage.setItem('role', role);
       login(token, role);
-      alert("Login Successful");
-      navigate("/student/jobs");
+      alert('Login Successful');
+      navigate('/student/jobs');
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message || "Login failed. Please try again.");
+        alert(error.response.data.message || 'Login failed. Please try again.');
       } else {
-        alert("An error occurred. Please check your connection.");
+        alert('An error occurred. Please check your connection.');
       }
     }
   };
@@ -92,7 +92,7 @@ const LoginPortal = () => {
             <label htmlFor="password">Password</label>
             <div className="password-container">
               <input
-                type={isPasswordVisible ? "text" : "password"}
+                type={isPasswordVisible ? 'text' : 'password'}
                 id="password"
                 name="password"
                 placeholder="Enter your password"
@@ -104,7 +104,7 @@ const LoginPortal = () => {
                 className="toggle-password"
                 onClick={() => setIsPasswordVisible(!isPasswordVisible)}
               >
-                {isPasswordVisible ? "🙈" : "👁️"}
+                {isPasswordVisible ? '🙈' : '👁️'}
               </span>
             </div>
           </div>
@@ -115,14 +115,14 @@ const LoginPortal = () => {
             <button
               type="button"
               className="forgot-password"
-              onClick={() => navigate("/PasswordReset")}
+              onClick={() => navigate('/PasswordReset')}
             >
               Forget Password
             </button>
           </div>
           <p className="register-link">
-            Don’t have an account yet?{" "}
-            <span onClick={() => navigate("/register")}>
+            Don’t have an account yet?{' '}
+            <span onClick={() => navigate('/register')}>
               Create a new Account
             </span>
           </p>

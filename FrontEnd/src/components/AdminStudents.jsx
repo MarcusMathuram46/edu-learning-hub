@@ -1,25 +1,25 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { motion } from "framer-motion"; // Import framer-motion
-import "../style/AdminStudents.css";
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { motion } from 'framer-motion'; // Import framer-motion
+import '../style/AdminStudents.css';
 
 const AdminStudents = () => {
   const [students, setStudents] = useState([]);
-  const [search, setSearch] = useState("");
-  const [courseFilter, setCourseFilter] = useState("");
-  const [statusFilter, setStatusFilter] = useState("");
+  const [search, setSearch] = useState('');
+  const [courseFilter, setCourseFilter] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
         const { data } = await axios.get(
-          "https://edu-learning-hub.onrender.com/api/students"
+          'https://edu-learning-hub.onrender.com/students',
         );
         setStudents(data);
       } catch (error) {
-        console.error("Error fetching students:", error);
+        console.error('Error fetching students:', error);
       }
     };
 
@@ -29,26 +29,26 @@ const AdminStudents = () => {
   const handleDelete = useCallback(async (id) => {
     try {
       await axios.delete(
-        `https://edu-learning-hub.onrender.com/api/students/${id}`
+        `https://edu-learning-hub.onrender.com/students/${id}`,
       );
       setStudents((prevStudents) =>
-        prevStudents.filter((student) => student._id !== id)
+        prevStudents.filter((student) => student._id !== id),
       );
     } catch (error) {
-      console.error("Error deleting student:", error);
+      console.error('Error deleting student:', error);
     }
   }, []);
 
   const getStatusBadgeClass = (status) => {
     switch (status) {
-      case "Active":
-        return "success";
-      case "Inactive":
-        return "secondary";
-      case "Completed":
-        return "warning";
+      case 'Active':
+        return 'success';
+      case 'Inactive':
+        return 'secondary';
+      case 'Completed':
+        return 'warning';
       default:
-        return "";
+        return '';
     }
   };
 
@@ -113,7 +113,7 @@ const AdminStudents = () => {
         <div className="col-md-2 text-end">
           <motion.button
             className="students-btn btn-primary w-100"
-            onClick={() => navigate("http://localhost:3000/students/add")}
+            onClick={() => navigate('http://localhost:3000/students/add')}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -151,7 +151,7 @@ const AdminStudents = () => {
               >
                 <td>
                   <img
-                    src={s.photo || "https://via.placeholder.com/40"}
+                    src={s.photo || 'https://via.placeholder.com/40'}
                     alt="avatar"
                     width={40}
                     height={40}

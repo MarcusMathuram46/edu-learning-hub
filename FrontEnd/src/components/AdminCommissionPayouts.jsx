@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import "../style/AdminCommissionPayouts.css";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import '../style/AdminCommissionPayouts.css';
 
-const API_BASE = "https://edu-learning-hub.onrender.com/api/commission-payouts"; // or your deployed backend URL
+const API_BASE = 'https://edu-learning-hub.onrender.com/commission-payouts'; // or your deployed backend URL
 
 const AdminCommissionPayouts = () => {
   const [transactions, setTransactions] = useState([]);
-  const [name, setName] = useState("");
-  const [amount, setAmount] = useState("");
-  const [type, setType] = useState("Instructor Payout");
-  const [status, setStatus] = useState("Pending");
+  const [name, setName] = useState('');
+  const [amount, setAmount] = useState('');
+  const [type, setType] = useState('Instructor Payout');
+  const [status, setStatus] = useState('Pending');
   const [editingId, setEditingId] = useState(null);
 
   // Fetch all transactions on mount
@@ -22,7 +22,7 @@ const AdminCommissionPayouts = () => {
       const res = await axios.get(`${API_BASE}`);
       setTransactions(res.data);
     } catch (error) {
-      console.error("Failed to fetch payouts:", error);
+      console.error('Failed to fetch payouts:', error);
     }
   };
 
@@ -43,7 +43,7 @@ const AdminCommissionPayouts = () => {
       fetchTransactions(); // Refresh data
       resetForm();
     } catch (error) {
-      console.error("Error saving transaction:", error);
+      console.error('Error saving transaction:', error);
     }
   };
 
@@ -60,15 +60,15 @@ const AdminCommissionPayouts = () => {
       await axios.delete(`${API_BASE}/${id}`);
       fetchTransactions();
     } catch (error) {
-      console.error("Error deleting transaction:", error);
+      console.error('Error deleting transaction:', error);
     }
   };
 
   const resetForm = () => {
-    setName("");
-    setAmount("");
-    setType("Instructor Payout");
-    setStatus("Pending");
+    setName('');
+    setAmount('');
+    setType('Instructor Payout');
+    setStatus('Pending');
     setEditingId(null);
   };
 
@@ -100,7 +100,7 @@ const AdminCommissionPayouts = () => {
           <option value="Paid">Paid</option>
         </select>
         <button className="d-btn" onClick={addOrUpdateTransaction}>
-          {editingId ? "Update" : "Add"} Transaction
+          {editingId ? 'Update' : 'Add'} Transaction
         </button>
       </div>
 

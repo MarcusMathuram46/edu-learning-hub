@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../style/AdminCustomReportsAndDataExports.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../style/AdminCustomReportsAndDataExports.css';
 
-const API_URL = "https://edu-learning-hub.onrender.com/api/reports"; // Replace with your backend URL
+const API_URL = 'https://edu-learning-hub.onrender.com/reports'; // Replace with your backend URL
 
 const AdminCustomReportsAndDataExports = () => {
   const [reports, setReports] = useState([]);
   const [report, setReport] = useState({
-    title: "",
-    type: "Excel",
-    prediction: "",
+    title: '',
+    type: 'Excel',
+    prediction: '',
   });
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
@@ -23,7 +23,7 @@ const AdminCustomReportsAndDataExports = () => {
       const response = await axios.get(API_URL);
       setReports(response.data);
     } catch (error) {
-      console.error("Error fetching reports:", error);
+      console.error('Error fetching reports:', error);
     }
   };
 
@@ -44,9 +44,9 @@ const AdminCustomReportsAndDataExports = () => {
         setReports([...reports, data]);
       }
 
-      setReport({ title: "", type: "Excel", prediction: "" });
+      setReport({ title: '', type: 'Excel', prediction: '' });
     } catch (error) {
-      console.error("Error saving report:", error);
+      console.error('Error saving report:', error);
     }
   };
 
@@ -55,7 +55,7 @@ const AdminCustomReportsAndDataExports = () => {
       await axios.delete(`${API_URL}/${id}`);
       setReports(reports.filter((r) => r._id !== id));
     } catch (error) {
-      console.error("Error deleting report:", error);
+      console.error('Error deleting report:', error);
     }
   };
 
@@ -72,19 +72,19 @@ const AdminCustomReportsAndDataExports = () => {
   const downloadReport = async (id, type, title) => {
     try {
       const response = await axios.get(`${API_URL}/download/${id}`, {
-        responseType: "blob", // important for file download
+        responseType: 'blob', // important for file download
       });
 
-      const fileExtension = type === "Excel" ? "xlsx" : type.toLowerCase();
+      const fileExtension = type === 'Excel' ? 'xlsx' : type.toLowerCase();
       const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement("a");
+      const link = document.createElement('a');
       link.href = url;
-      link.setAttribute("download", `${title}.${fileExtension}`);
+      link.setAttribute('download', `${title}.${fileExtension}`);
       document.body.appendChild(link);
       link.click();
       link.remove();
     } catch (error) {
-      console.error("Error downloading report:", error);
+      console.error('Error downloading report:', error);
     }
   };
 
@@ -118,7 +118,7 @@ const AdminCustomReportsAndDataExports = () => {
           required
         ></textarea>
         <button type="submit">
-          {isEditing ? "Update Report" : "Add Report"}
+          {isEditing ? 'Update Report' : 'Add Report'}
         </button>
       </form>
 

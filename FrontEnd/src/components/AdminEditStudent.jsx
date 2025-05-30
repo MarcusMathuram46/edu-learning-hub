@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const AdminEditStudent = () => {
   const { id } = useParams();
@@ -9,7 +9,7 @@ const AdminEditStudent = () => {
 
   useEffect(() => {
     axios
-      .get(`https://edu-learning-hub.onrender.com/api/students/${id}`)
+      .get(`https://edu-learning-hub.onrender.com/students/${id}`)
       .then((res) => {
         setStudentData(res.data);
       });
@@ -24,12 +24,12 @@ const AdminEditStudent = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `https://edu-learning-hub.onrender.com/api/students/${id}`,
-        studentData
+        `https://edu-learning-hub.onrender.com/students/${id}`,
+        studentData,
       );
       navigate(`/students/${id}`);
     } catch (err) {
-      console.error("Error updating student", err);
+      console.error('Error updating student', err);
     }
   };
 
@@ -39,7 +39,7 @@ const AdminEditStudent = () => {
     <div className="container mt-4">
       <h3>Edit Student</h3>
       <form onSubmit={handleSubmit}>
-        {["name", "email", "phone", "photo"].map((field) => (
+        {['name', 'email', 'phone', 'photo'].map((field) => (
           <div key={field} className="mb-3">
             <label className="form-label">{field}</label>
             <input

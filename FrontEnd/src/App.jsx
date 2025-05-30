@@ -78,8 +78,8 @@ import AdminSupportAndFeedback from "./components/AdminSupportAndFeedback";
 import AdminRecruiterAndPlacementManagement from "./components/AdminRecruiterAndPlacementManagement";
 import AdminMentors from "./components/AdminMentors";
 import AdminMentorDetail from "./components/AdminMentorDetail";
-import AdminSuceess from "./components/AdminSuceess";
-import AdminBlogWebinar from "./components/AdminBlogWebinar";
+import AdminSuccess from "./components/AdminSuccess";
+import AdminBlog from "./components/AdminBlog";
 import AdminRecruiterDashboard from "./components/AdminRecruiterDashboard";
 import AdminPartners from "./components/AdminPartners";
 import AdminPostJob from "./components/AdminPostJob";
@@ -88,6 +88,7 @@ import AdminScheduleInterview from "./components/AdminScheduleInterview";
 import AdminEmailCampaign from "./components/AdminEmailCampaign";
 import AdminResumeViewer from "./components/AdminResumeViewer";
 import AdminLoginPortal from "./components/AdminLoginPortal";
+import AdminWebinar from "./components/AdminWebinar"
 
 import AuthProvider from "./context/AuthContext";
 
@@ -377,10 +378,10 @@ function App() {
                 }
               />
               <Route
-                path="Suceess"
+                path="Success"
                 element={
                   <ProtectedRoute allowedRoles={["Admin", "Super Admin"]}>
-                    <AdminSuceess />
+                    <AdminSuccess />
                   </ProtectedRoute>
                 }
               />
@@ -388,7 +389,8 @@ function App() {
                 path="blog-webinar"
                 element={
                   <ProtectedRoute allowedRoles={["Admin", "Super Admin"]}>
-                    <AdminBlogWebinar />
+                    <AdminBlog />
+                    <AdminWebinar />
                   </ProtectedRoute>
                 }
               />

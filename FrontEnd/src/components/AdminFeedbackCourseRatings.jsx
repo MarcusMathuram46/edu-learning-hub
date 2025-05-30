@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../style/AdminFeedbackCourseRatings.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../style/AdminFeedbackCourseRatings.css';
 
-const API_BASE_URL = "https://edu-learning-hub.onrender.com/api/feedback"; // Replace with your backend URL
+const API_BASE_URL = 'https://edu-learning-hub.onrender.com/feedback'; // Replace with your backend URL
 
 const AdminFeedbackCourseRatings = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [feedback, setFeedback] = useState({
-    course: "",
-    mentor: "",
-    review: "",
+    course: '',
+    mentor: '',
+    review: '',
     rating: 1,
-    sentiment: "Positive",
+    sentiment: 'Positive',
   });
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
@@ -26,7 +26,7 @@ const AdminFeedbackCourseRatings = () => {
       const res = await axios.get(`${API_BASE_URL}`);
       setFeedbacks(res.data);
     } catch (err) {
-      console.error("Error fetching feedbacks:", err);
+      console.error('Error fetching feedbacks:', err);
     }
   };
 
@@ -40,7 +40,7 @@ const AdminFeedbackCourseRatings = () => {
       if (isEditing) {
         const res = await axios.put(`${API_BASE_URL}/${editingId}`, feedback);
         setFeedbacks((prev) =>
-          prev.map((f) => (f._id === editingId ? res.data : f))
+          prev.map((f) => (f._id === editingId ? res.data : f)),
         );
         setIsEditing(false);
         setEditingId(null);
@@ -50,14 +50,14 @@ const AdminFeedbackCourseRatings = () => {
       }
 
       setFeedback({
-        course: "",
-        mentor: "",
-        review: "",
+        course: '',
+        mentor: '',
+        review: '',
         rating: 1,
-        sentiment: "Positive",
+        sentiment: 'Positive',
       });
     } catch (err) {
-      console.error("Submit error:", err);
+      console.error('Submit error:', err);
     }
   };
 
@@ -66,7 +66,7 @@ const AdminFeedbackCourseRatings = () => {
       await axios.delete(`${API_BASE_URL}/${id}`);
       setFeedbacks(feedbacks.filter((f) => f._id !== id));
     } catch (err) {
-      console.error("Delete error:", err);
+      console.error('Delete error:', err);
     }
   };
 
@@ -126,7 +126,7 @@ const AdminFeedbackCourseRatings = () => {
           <option>Negative</option>
         </select>
         <button type="submit">
-          {isEditing ? "Update Feedback" : "Submit Feedback"}
+          {isEditing ? 'Update Feedback' : 'Submit Feedback'}
         </button>
       </form>
 

@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import "../style/AdminDiscountsPromotions.css";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import '../style/AdminDiscountsPromotions.css';
 
-const API_URL = "https://edu-learning-hub.onrender.com/api/discounts"; // Change this if you're hosting it elsewhere
+const API_URL = 'https://edu-learning-hub.onrender.com/discounts'; // Change this if you're hosting it elsewhere
 
 const AdminDiscountsPromotions = () => {
   const [discounts, setDiscounts] = useState([]);
-  const [code, setCode] = useState("");
-  const [percentage, setPercentage] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [expiryDate, setExpiryDate] = useState("");
+  const [code, setCode] = useState('');
+  const [percentage, setPercentage] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const AdminDiscountsPromotions = () => {
       const res = await axios.get(API_URL);
       setDiscounts(res.data);
     } catch (err) {
-      console.error("Error fetching discounts", err);
+      console.error('Error fetching discounts', err);
     }
   };
 
@@ -55,15 +55,15 @@ const AdminDiscountsPromotions = () => {
       fetchDiscounts();
       resetForm();
     } catch (err) {
-      console.error("Error saving discount", err);
+      console.error('Error saving discount', err);
     }
   };
 
   const resetForm = () => {
-    setCode("");
-    setPercentage("");
-    setStartDate("");
-    setExpiryDate("");
+    setCode('');
+    setPercentage('');
+    setStartDate('');
+    setExpiryDate('');
     setEditingId(null);
   };
 
@@ -72,15 +72,15 @@ const AdminDiscountsPromotions = () => {
       await axios.patch(`${API_URL}/${id}/apply`);
       fetchDiscounts();
     } catch (err) {
-      console.error("Error applying discount", err);
+      console.error('Error applying discount', err);
     }
   };
 
   const editDiscount = (discount) => {
     setCode(discount.code);
     setPercentage(discount.percentage);
-    setStartDate(discount.startDate.split("T")[0]);
-    setExpiryDate(discount.expiryDate.split("T")[0]);
+    setStartDate(discount.startDate.split('T')[0]);
+    setExpiryDate(discount.expiryDate.split('T')[0]);
     setEditingId(discount._id);
   };
 
@@ -89,7 +89,7 @@ const AdminDiscountsPromotions = () => {
       await axios.delete(`${API_URL}/${id}`);
       fetchDiscounts();
     } catch (err) {
-      console.error("Error deleting discount", err);
+      console.error('Error deleting discount', err);
     }
   };
 
@@ -119,7 +119,7 @@ const AdminDiscountsPromotions = () => {
           onChange={(e) => setExpiryDate(e.target.value)}
         />
         <button className="d-btn" onClick={addOrUpdateDiscount}>
-          {editingId ? "Update" : "Add"} Discount
+          {editingId ? 'Update' : 'Add'} Discount
         </button>
       </div>
 
@@ -136,8 +136,8 @@ const AdminDiscountsPromotions = () => {
                 <strong>Discount:</strong> {discount.percentage}%
               </p>
               <p>
-                <strong>Valid:</strong> {discount.startDate.split("T")[0]} -{" "}
-                {discount.expiryDate.split("T")[0]}
+                <strong>Valid:</strong> {discount.startDate.split('T')[0]} -{' '}
+                {discount.expiryDate.split('T')[0]}
               </p>
               <p>
                 <strong>Usage:</strong> {discount.usage} times

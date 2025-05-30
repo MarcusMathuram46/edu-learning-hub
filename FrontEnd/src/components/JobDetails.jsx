@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { useParams, useNavigate } from "react-router-dom"; // <-- Import useNavigate
-import axios from "axios";
-import "../style/JobDetail.css";
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useParams, useNavigate } from 'react-router-dom'; // <-- Import useNavigate
+import axios from 'axios';
+import '../style/JobDetail.css';
 
 const InfoRow = ({ label, value, isEmail }) => (
   <p>
-    <strong>{label}:</strong>{" "}
-    {value ? isEmail ? <a href={`mailto:${value}`}>{value}</a> : value : "N/A"}
+    <strong>{label}:</strong>{' '}
+    {value ? isEmail ? <a href={`mailto:${value}`}>{value}</a> : value : 'N/A'}
   </p>
 );
 
@@ -23,12 +23,12 @@ function JobDetails() {
       try {
         setLoading(true);
         const { data } = await axios.get(
-          `https://edu-learning-hub.onrender.com/api/recruiter/jobs/${id}`
+          `https://edu-learning-hub.onrender.com/recruiter/jobs/${id}`,
         );
         setJobData(data);
         setError(null);
       } catch (err) {
-        setError(err.response?.data?.message || "Failed to load job details");
+        setError(err.response?.data?.message || 'Failed to load job details');
       } finally {
         setLoading(false);
       }
@@ -39,7 +39,7 @@ function JobDetails() {
 
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
-    return isNaN(date.getTime()) ? "N/A" : date.toLocaleDateString();
+    return isNaN(date.getTime()) ? 'N/A' : date.toLocaleDateString();
   };
 
   if (loading)
@@ -80,13 +80,13 @@ function JobDetails() {
         className="job-details-back-btn"
         onClick={() => navigate(-1)} // <-- Go back one page in history
         style={{
-          marginBottom: "1rem",
-          padding: "0.5rem 1rem",
-          cursor: "pointer",
-          borderRadius: "5px",
-          border: "1px solid #333",
-          background: "white",
-          color: "#333",
+          marginBottom: '1rem',
+          padding: '0.5rem 1rem',
+          cursor: 'pointer',
+          borderRadius: '5px',
+          border: '1px solid #333',
+          background: 'white',
+          color: '#333',
         }}
       >
         ← Back
@@ -97,27 +97,27 @@ function JobDetails() {
         <motion.img
           src={
             companyLogo ||
-            "https://dummyimage.com/80x80/cccccc/000000&text=Logo"
+            'https://dummyimage.com/80x80/cccccc/000000&text=Logo'
           }
-          alt={`${companyName || "Company"} logo`}
+          alt={`${companyName || 'Company'} logo`}
           className="job-details-company-logo"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         />
         <div className="job-details-title-info">
-          <h1 className="job-details-title">{jobTitle || "N/A"}</h1>
+          <h1 className="job-details-title">{jobTitle || 'N/A'}</h1>
           <a
-            href={companyWebsite || "#"}
+            href={companyWebsite || '#'}
             target="_blank"
             rel="noopener noreferrer"
             className="job-details-company-name"
           >
-            {companyName || "N/A"}
+            {companyName || 'N/A'}
           </a>
-          <p className="job-details-location">{location || "N/A"}</p>
+          <p className="job-details-location">{location || 'N/A'}</p>
           <p className="job-details-type-posted">
-            <span className="job-details-type">{employmentType || "N/A"}</span>
+            <span className="job-details-type">{employmentType || 'N/A'}</span>
             &nbsp;&middot;&nbsp;
             <span className="job-details-posted">
               Posted on {formatDate(postedAt)}
@@ -129,21 +129,21 @@ function JobDetails() {
           onClick={async () => {
             try {
               const res = await fetch(
-                `https://edu-learning-hub.onrender.com/api/apply/${jobData._id}`
+                `https://edu-learning-hub.onrender.com/apply/${jobData._id}`,
               );
               const data = await res.json();
               if (data.applicationLink) {
                 window.open(
                   data.applicationLink,
-                  "_blank",
-                  "noopener,noreferrer"
+                  '_blank',
+                  'noopener,noreferrer',
                 );
               } else {
-                alert("Application link not found");
+                alert('Application link not found');
               }
             } catch (err) {
               console.error(err);
-              alert("Failed to get application link");
+              alert('Failed to get application link');
             }
           }}
         >
@@ -155,14 +155,14 @@ function JobDetails() {
       <main className="job-details-main">
         <section className="job-details-section">
           <h2 className="job-details-section-title">Job Description</h2>
-          <p className="job-details-description">{jobDescription || "N/A"}</p>
+          <p className="job-details-description">{jobDescription || 'N/A'}</p>
         </section>
 
         {skillsRequired && (
           <section className="job-details-section">
             <h2 className="job-details-section-title">Skills Required</h2>
             <ul className="job-details-list">
-              {skillsRequired.split(",").map((skill, idx) => (
+              {skillsRequired.split(',').map((skill, idx) => (
                 <li key={idx} className="job-details-list-item">
                   {skill.trim()}
                 </li>
@@ -185,7 +185,7 @@ function JobDetails() {
           <InfoRow label="Salary Range" value={salaryRange} />
           <InfoRow
             label="Vacancies"
-            value={vacancies !== undefined ? vacancies : "N/A"}
+            value={vacancies !== undefined ? vacancies : 'N/A'}
           />
           <InfoRow
             label="Education Requirements"

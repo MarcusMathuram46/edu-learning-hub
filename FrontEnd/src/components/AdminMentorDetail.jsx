@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Spinner } from "react-bootstrap";
-import { motion } from "framer-motion";
-import "../style/AdminMentorDetail.css"; // Adjust the path as necessary
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { Spinner } from 'react-bootstrap';
+import { motion } from 'framer-motion';
+import '../style/AdminMentorDetail.css'; // Adjust the path as necessary
 
 const AdminMentorDetail = () => {
   const { id } = useParams();
@@ -19,7 +19,7 @@ const AdminMentorDetail = () => {
     const fetchMentorDetails = async () => {
       try {
         const res = await axios.get(
-          `https://edu-learning-hub.onrender.com/api/mentors/${id}`
+          `https://edu-learning-hub.onrender.com/mentors/${id}`,
         );
         setMentor(res.data);
         setSessions(res.data.sessions || []);
@@ -27,7 +27,7 @@ const AdminMentorDetail = () => {
         setFeedbacks(res.data.feedbacks || []); // Assuming feedbacks are part of mentor data
         setLoading(false);
       } catch (err) {
-        setError("Error fetching mentor details.");
+        setError('Error fetching mentor details.');
         setLoading(false);
       }
     };
@@ -70,7 +70,7 @@ const AdminMentorDetail = () => {
           <h4>
             {mentor.name} - {mentor.expertise}
           </h4>
-          <span className="badge bg-info">{mentor.role || "Mentor"}</span>
+          <span className="badge bg-info">{mentor.role || 'Mentor'}</span>
         </div>
 
         <div className="card-body row admin-mentor-details-body">
@@ -78,18 +78,18 @@ const AdminMentorDetail = () => {
             <img
               src={
                 mentor.photo
-                  ? `https://edu-learning-hub.onrender.com${mentor.photo}`
-                  : "https://via.placeholder.com/40" // Or your custom default image
+                  ? `https://learning-hub-p2yq.onrender.com${mentor.photo}`
+                  : 'https://via.placeholder.com/40' // Or your custom default image
               }
               alt="mentor"
               className="img-fluid rounded-circle mb-2"
-              style={{ width: "120px", height: "120px", objectFit: "cover" }}
+              style={{ width: '120px', height: '120px', objectFit: 'cover' }}
             />
             <p className="text-muted admin-mentor-details-text">
               {mentor.email}
             </p>
             <p className="text-muted admin-mentor-details-text">
-              {mentor.mobile || "mobile not provided"}
+              {mentor.mobile || 'mobile not provided'}
             </p>
           </div>
 

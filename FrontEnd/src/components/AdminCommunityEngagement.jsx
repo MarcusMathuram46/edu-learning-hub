@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../style/AdminCommunityEngagement.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../style/AdminCommunityEngagement.css';
 
-const BASE_URL = "https://edu-learning-hub.onrender.com/api/community"; // Replace with Render URL if deployed
+const BASE_URL = 'https://edu-learning-hub.onrender.com/community'; // Replace with Render URL if deployed
 
 const AdminCommunityEngagement = () => {
   const [forums, setForums] = useState([]);
   const [polls, setPolls] = useState([]);
-  const [forum, setForum] = useState({ title: "", author: "", content: "" });
-  const [poll, setPoll] = useState({ question: "", options: "" });
+  const [forum, setForum] = useState({ title: '', author: '', content: '' });
+  const [poll, setPoll] = useState({ question: '', options: '' });
 
   const [isEditingForum, setIsEditingForum] = useState(false);
   const [editingForumId, setEditingForumId] = useState(null);
@@ -27,7 +27,7 @@ const AdminCommunityEngagement = () => {
       const res = await axios.get(`${BASE_URL}/forums`);
       setForums(res.data);
     } catch (error) {
-      console.error("Error fetching forums:", error);
+      console.error('Error fetching forums:', error);
     }
   };
 
@@ -36,7 +36,7 @@ const AdminCommunityEngagement = () => {
       const res = await axios.get(`${BASE_URL}/polls`);
       setPolls(res.data);
     } catch (error) {
-      console.error("Error fetching polls:", error);
+      console.error('Error fetching polls:', error);
     }
   };
 
@@ -56,12 +56,12 @@ const AdminCommunityEngagement = () => {
       } else {
         await axios.post(`${BASE_URL}/forums`, forum);
       }
-      setForum({ title: "", author: "", content: "" });
+      setForum({ title: '', author: '', content: '' });
       setIsEditingForum(false);
       setEditingForumId(null);
       fetchForums();
     } catch (err) {
-      console.error("Forum submission error:", err);
+      console.error('Forum submission error:', err);
     }
   };
 
@@ -70,7 +70,7 @@ const AdminCommunityEngagement = () => {
     try {
       const pollData = {
         question: poll.question,
-        options: poll.options.split(",").map((opt) => opt.trim()),
+        options: poll.options.split(',').map((opt) => opt.trim()),
       };
 
       if (isEditingPoll) {
@@ -79,12 +79,12 @@ const AdminCommunityEngagement = () => {
         await axios.post(`${BASE_URL}/polls`, pollData);
       }
 
-      setPoll({ question: "", options: "" });
+      setPoll({ question: '', options: '' });
       setIsEditingPoll(false);
       setEditingPollId(null);
       fetchPolls();
     } catch (err) {
-      console.error("Poll submission error:", err);
+      console.error('Poll submission error:', err);
     }
   };
 
@@ -99,12 +99,12 @@ const AdminCommunityEngagement = () => {
       await axios.delete(`${BASE_URL}/forums/${id}`);
       fetchForums();
     } catch (err) {
-      console.error("Delete forum error:", err);
+      console.error('Delete forum error:', err);
     }
   };
 
   const editPoll = (p) => {
-    setPoll({ question: p.question, options: p.options.join(", ") });
+    setPoll({ question: p.question, options: p.options.join(', ') });
     setIsEditingPoll(true);
     setEditingPollId(p._id);
   };
@@ -114,7 +114,7 @@ const AdminCommunityEngagement = () => {
       await axios.delete(`${BASE_URL}/polls/${id}`);
       fetchPolls();
     } catch (err) {
-      console.error("Delete poll error:", err);
+      console.error('Delete poll error:', err);
     }
   };
 
@@ -151,7 +151,7 @@ const AdminCommunityEngagement = () => {
           required
         ></textarea>
         <button className="d-btn" type="submit">
-          {isEditingForum ? "Update" : "Post"}
+          {isEditingForum ? 'Update' : 'Post'}
         </button>
       </form>
 
@@ -193,7 +193,7 @@ const AdminCommunityEngagement = () => {
           required
         />
         <button className="d-btn" type="submit">
-          {isEditingPoll ? "Update Poll" : "Add Poll"}
+          {isEditingPoll ? 'Update Poll' : 'Add Poll'}
         </button>
       </form>
 

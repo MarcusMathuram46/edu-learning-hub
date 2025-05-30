@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import "../style/AdminSalesFunnelConversion.css";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import '../style/AdminSalesFunnelConversion.css';
 
-const stages = ["Lead", "Nurturing", "Conversion", "Enrollment"];
+const stages = ['Lead', 'Nurturing', 'Conversion', 'Enrollment'];
 
 const AdminSalesFunnelConversion = () => {
   const [funnel, setFunnel] = useState({
@@ -12,12 +12,12 @@ const AdminSalesFunnelConversion = () => {
     Enrollment: [],
   });
 
-  const [newEntry, setNewEntry] = useState("");
+  const [newEntry, setNewEntry] = useState('');
 
   // 🔁 Fetch all entries
   useEffect(() => {
     axios
-      .get("https://edu-learning-hub.onrender.com/api/funnel-entries")
+      .get('https://edu-learning-hub.onrender.com/funnel-entries')
       .then((res) => {
         const entries = res.data;
         const grouped = {
@@ -33,16 +33,16 @@ const AdminSalesFunnelConversion = () => {
         });
         setFunnel(grouped);
       })
-      .catch((err) => console.error("Failed to fetch:", err));
+      .catch((err) => console.error('Failed to fetch:', err));
   }, []);
 
   // 🆕 Add new entry
   const addEntry = () => {
     if (newEntry.trim()) {
       axios
-        .post("https://edu-learning-hub.onrender.com/api/funnel-entries", {
+        .post('https://edu-learning-hub.onrender.com/funnel-entries', {
           name: newEntry,
-          stage: "Lead",
+          stage: 'Lead',
         })
         .then((res) => {
           const entry = res.data;
@@ -50,49 +50,49 @@ const AdminSalesFunnelConversion = () => {
             ...prev,
             Lead: [...prev.Lead, { id: entry._id, name: entry.name }],
           }));
-          setNewEntry("");
+          setNewEntry('');
         })
-        .catch((err) => console.error("Add failed:", err));
+        .catch((err) => console.error('Add failed:', err));
     }
   };
 
   // 🗑️ Delete entry
   const deleteEntry = (stage, id) => {
     axios
-      .delete(`https://edu-learning-hub.onrender.com/api/funnel-entries/${id}`)
+      .delete(`https://edu-learning-hub.onrender.com/funnel-entries/${id}`)
       .then(() => {
         setFunnel((prev) => ({
           ...prev,
           [stage]: prev[stage].filter((entry) => entry.id !== id),
         }));
       })
-      .catch((err) => console.error("Delete failed:", err));
+      .catch((err) => console.error('Delete failed:', err));
   };
 
   // 🟦 Drag Handling
   const handleDragStart = (e, entry, stage) => {
-    e.dataTransfer.setData("entry", JSON.stringify(entry));
-    e.dataTransfer.setData("stage", stage);
+    e.dataTransfer.setData('entry', JSON.stringify(entry));
+    e.dataTransfer.setData('stage', stage);
   };
 
   const handleDrop = (e, newStage) => {
     e.preventDefault();
-    const entry = JSON.parse(e.dataTransfer.getData("entry"));
-    const oldStage = e.dataTransfer.getData("stage");
+    const entry = JSON.parse(e.dataTransfer.getData('entry'));
+    const oldStage = e.dataTransfer.getData('stage');
 
     if (oldStage !== newStage) {
       axios
         .put(
-          `https://edu-learning-hub.onrender.com/api/funnel-entries/${entry.id}`,
+          `https://edu-learning-hub.onrender.com/funnel-entries/${entry.id}`,
           {
             stage: newStage,
-          }
+          },
         )
         .then(() => {
           setFunnel((prev) => {
             const updated = { ...prev };
             updated[oldStage] = updated[oldStage].filter(
-              (e) => e.id !== entry.id
+              (e) => e.id !== entry.id,
             );
             updated[newStage] = [
               ...updated[newStage],
@@ -101,7 +101,7 @@ const AdminSalesFunnelConversion = () => {
             return updated;
           });
         })
-        .catch((err) => console.error("Update failed:", err));
+        .catch((err) => console.error('Update failed:', err));
     }
   };
 

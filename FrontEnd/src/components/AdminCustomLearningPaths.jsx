@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "../style/AdminCustomLearningPaths.css";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import '../style/AdminCustomLearningPaths.css';
 
-const API_URL =
-  "https://edu-learning-hub.onrender.com/api/custom-learning-paths"; // Change this to your actual backend URL
+const API_URL = 'https://edu-learning-hub.onrender.com/custom-learning-paths'; // Change this to your actual backend URL
 
 const AdminCustomLearningPaths = () => {
   const [paths, setPaths] = useState([]);
   const [path, setPath] = useState({
-    company: "",
-    courseList: "",
-    objective: "",
-    duration: "",
+    company: '',
+    courseList: '',
+    objective: '',
+    duration: '',
   });
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState(null);
@@ -22,7 +21,7 @@ const AdminCustomLearningPaths = () => {
       const res = await axios.get(API_URL);
       setPaths(res.data);
     } catch (err) {
-      console.error("Error fetching paths:", err);
+      console.error('Error fetching paths:', err);
     }
   };
 
@@ -46,22 +45,22 @@ const AdminCustomLearningPaths = () => {
         setIsEditing(false);
         setEditId(null);
       } catch (err) {
-        console.error("Error updating path:", err);
+        console.error('Error updating path:', err);
       }
     } else {
       try {
         const res = await axios.post(API_URL, path);
         setPaths([...paths, res.data]);
       } catch (err) {
-        console.error("Error creating path:", err);
+        console.error('Error creating path:', err);
       }
     }
 
     setPath({
-      company: "",
-      courseList: "",
-      objective: "",
-      duration: "",
+      company: '',
+      courseList: '',
+      objective: '',
+      duration: '',
     });
   };
 
@@ -83,7 +82,7 @@ const AdminCustomLearningPaths = () => {
       await axios.delete(`${API_URL}/${id}`);
       setPaths(paths.filter((p) => p._id !== id));
     } catch (err) {
-      console.error("Error deleting path:", err);
+      console.error('Error deleting path:', err);
     }
   };
 
@@ -123,7 +122,7 @@ const AdminCustomLearningPaths = () => {
           onChange={handleChange}
           required
         />
-        <button type="submit">{isEditing ? "Update Path" : "Add Path"}</button>
+        <button type="submit">{isEditing ? 'Update Path' : 'Add Path'}</button>
       </form>
 
       <div className="CLP-list">

@@ -249,7 +249,7 @@ const AdminMentors = () => {
                 <img
                   src={
                     mentor.photo
-                      ? `https://edu-learning-hub.onrender.com${mentor.photo}`
+                      ? `https://learning-hub-p2yq.onrender.com${mentor.photo}`
                       : "https://via.placeholder.com/40" // Or your custom default image
                   }
                   alt="mentor"

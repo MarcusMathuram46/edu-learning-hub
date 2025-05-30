@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import "../style/AdminRefundsDisputes.css";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import '../style/AdminRefundsDisputes.css';
 
 const AdminRefundsDisputes = () => {
   const [refunds, setRefunds] = useState([]);
-  const [amount, setAmount] = useState("");
-  const [reason, setReason] = useState("");
-  const [status, setStatus] = useState("Pending");
+  const [amount, setAmount] = useState('');
+  const [reason, setReason] = useState('');
+  const [status, setStatus] = useState('Pending');
   const [editingIndex, setEditingIndex] = useState(null);
   const [editingId, setEditingId] = useState(null); // For backend update
 
-  const API_URL = "https://edu-learning-hub.onrender.com/api/refunds"; // 🔁 Replace with actual backend URL
+  const API_URL = 'https://edu-learning-hub.onrender.com/refunds'; // 🔁 Replace with actual backend URL
 
   // Fetch all refunds on load
   useEffect(() => {
@@ -22,7 +22,7 @@ const AdminRefundsDisputes = () => {
       const res = await axios.get(API_URL);
       setRefunds(res.data);
     } catch (error) {
-      console.error("Error fetching refunds:", error);
+      console.error('Error fetching refunds:', error);
     }
   };
 
@@ -43,7 +43,7 @@ const AdminRefundsDisputes = () => {
       fetchRefunds();
       resetForm();
     } catch (error) {
-      console.error("Error submitting refund:", error);
+      console.error('Error submitting refund:', error);
     }
   };
 
@@ -61,14 +61,14 @@ const AdminRefundsDisputes = () => {
       await axios.delete(`${API_URL}/${id}`);
       fetchRefunds();
     } catch (error) {
-      console.error("Error deleting refund:", error);
+      console.error('Error deleting refund:', error);
     }
   };
 
   const resetForm = () => {
-    setAmount("");
-    setReason("");
-    setStatus("Pending");
+    setAmount('');
+    setReason('');
+    setStatus('Pending');
     setEditingIndex(null);
     setEditingId(null);
   };
@@ -98,7 +98,7 @@ const AdminRefundsDisputes = () => {
           <option value="Resolved">Resolved</option>
         </select>
         <button className="d-btn" onClick={addOrUpdateRefund}>
-          {editingIndex !== null ? "Update" : "Submit"} Refund Request
+          {editingIndex !== null ? 'Update' : 'Submit'} Refund Request
         </button>
       </div>
 

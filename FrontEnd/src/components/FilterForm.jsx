@@ -1,45 +1,45 @@
-import React, { useState } from "react";
-import axios from "axios";
-import "../style/FilterForm.css";
+import React, { useState } from 'react';
+import axios from 'axios';
+import '../style/FilterForm.css';
 
 const FilterForm = () => {
-  const [learningDomain, setLearningDomain] = useState("");
-  const [workExperience, setWorkExperience] = useState("");
+  const [learningDomain, setLearningDomain] = useState('');
+  const [workExperience, setWorkExperience] = useState('');
   const [file, setFile] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Learning Domain:", learningDomain);
-    console.log("Work Experience:", workExperience);
-    console.log("File:", file);
+    console.log('Learning Domain:', learningDomain);
+    console.log('Work Experience:', workExperience);
+    console.log('File:', file);
 
     if (!learningDomain || !workExperience || !file) {
-      alert("Please fill all fields before submitting.");
+      alert('Please fill all fields before submitting.');
       return;
     }
 
     const formData = new FormData();
-    formData.append("learningDomain", learningDomain);
-    formData.append("workExperience", workExperience);
-    formData.append("file", file);
+    formData.append('learningDomain', learningDomain);
+    formData.append('workExperience', workExperience);
+    formData.append('file', file);
 
     try {
       const response = await axios.post(
-        "https://edu-learning-hub.onrender.com/api/upload",
+        'https://edu-learning-hub.onrender.com/upload',
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
-            Accept: "application/json",
+            'Content-Type': 'multipart/form-data',
+            Accept: 'application/json',
           },
-        }
+        },
       );
-      console.log("Response:", response.data);
-      alert("File uploaded successfully!");
+      console.log('Response:', response.data);
+      alert('File uploaded successfully!');
     } catch (error) {
-      console.error("Error:", error.response?.data || error.message);
-      alert("Failed to submit data");
+      console.error('Error:', error.response?.data || error.message);
+      alert('Failed to submit data');
     }
   };
 
@@ -118,7 +118,7 @@ export default FilterForm;
 //     formData.append("file", file);
 
 //     try {
-//       const response = await axios.post("https://edu-learning-hub.onrender.com/api/upload", formData, {
+//       const response = await axios.post("https://edu-learning-hub.onrender.com/upload", formData, {
 //         headers: {
 //           "Content-Type": "multipart/form-data",
 //           "Accept": "application/json",

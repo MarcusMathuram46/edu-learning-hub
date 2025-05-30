@@ -1,50 +1,50 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import "../style/PasswordReset.css"; // Import the CSS file
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import '../style/PasswordReset.css'; // Import the CSS file
 
 const PasswordReset = () => {
-  const [email, setEmail] = useState("");
-  const [token, setToken] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [token, setToken] = useState('');
+  const [newPassword, setNewPassword] = useState('');
   const navigate = useNavigate();
   const [isTokenVisible, setIsTokenVisible] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handleGenerateResetLink = async () => {
     if (!email) {
-      alert("Please enter your email.");
+      alert('Please enter your email.');
       return;
     }
 
     try {
       const response = await axios.post(
-        "https://edu-learning-hub.onrender.com/api/forgetpassword",
-        { email }
+        'https://edu-learning-hub.onrender.com/forgetpassword',
+        { email },
       );
       alert(response.data.message);
     } catch (error) {
       console.log(error);
-      alert(error.response?.data?.message || "Error sending reset link.");
+      alert(error.response?.data?.message || 'Error sending reset link.');
     }
   };
 
   const handleResetPassword = async () => {
     if (!token || !newPassword) {
-      alert("Please enter the token and the new password.");
+      alert('Please enter the token and the new password.');
       return;
     }
 
     try {
       const response = await axios.post(
-        "https://edu-learning-hub.onrender.com/api/setNewPassword",
-        { token, newPassword }
+        'https://edu-learning-hub.onrender.com/setNewPassword',
+        { token, newPassword },
       );
       alert(response.data.message);
-      navigate("/Login");
+      navigate('/Login');
     } catch (error) {
       console.error(error);
-      alert(error.response?.data?.message || "Error resetting password.");
+      alert(error.response?.data?.message || 'Error resetting password.');
     }
   };
 
@@ -76,7 +76,7 @@ const PasswordReset = () => {
           <label>Token</label>
           <div className="reset-input-wrapper">
             <input
-              type={isTokenVisible ? "text" : "password"}
+              type={isTokenVisible ? 'text' : 'password'}
               value={token}
               onChange={(e) => setToken(e.target.value)}
               className="reset-input"
@@ -100,7 +100,7 @@ const PasswordReset = () => {
           <label>New Password</label>
           <div className="reset-input-wrapper">
             <input
-              type={isPasswordVisible ? "text" : "password"}
+              type={isPasswordVisible ? 'text' : 'password'}
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               className="reset-input"

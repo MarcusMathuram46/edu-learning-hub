@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../style/AdminRealTimeInsightsDashboard.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../style/AdminRealTimeInsightsDashboard.css';
 
-const BASE_URL = "https://edu-learning-hub.onrender.com/api/insights"; // replace if hosted elsewhere
+const BASE_URL = 'https://edu-learning-hub.onrender.com/insights'; // replace if hosted elsewhere
 
 const AdminRealTimeInsightsDashboard = () => {
   const [records, setRecords] = useState([]);
   const [record, setRecord] = useState({
-    metric: "",
-    value: "",
-    category: "Enrollment Trends",
+    metric: '',
+    value: '',
+    category: 'Enrollment Trends',
   });
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
@@ -23,7 +23,7 @@ const AdminRealTimeInsightsDashboard = () => {
       const res = await axios.get(BASE_URL);
       setRecords(res.data);
     } catch (err) {
-      console.error("Failed to fetch insights:", err);
+      console.error('Failed to fetch insights:', err);
     }
   };
 
@@ -41,10 +41,10 @@ const AdminRealTimeInsightsDashboard = () => {
       } else {
         await axios.post(BASE_URL, record);
       }
-      setRecord({ metric: "", value: "", category: "Enrollment Trends" });
+      setRecord({ metric: '', value: '', category: 'Enrollment Trends' });
       fetchRecords();
     } catch (err) {
-      console.error("Failed to save record:", err);
+      console.error('Failed to save record:', err);
     }
   };
 
@@ -59,7 +59,7 @@ const AdminRealTimeInsightsDashboard = () => {
       await axios.delete(`${BASE_URL}/${id}`);
       fetchRecords();
     } catch (err) {
-      console.error("Failed to delete record:", err);
+      console.error('Failed to delete record:', err);
     }
   };
 
@@ -92,7 +92,7 @@ const AdminRealTimeInsightsDashboard = () => {
           <option>Revenue Projections</option>
           <option>Engagement Metrics</option>
         </select>
-        <button type="submit">{isEditing ? "Update" : "Add"} Record</button>
+        <button type="submit">{isEditing ? 'Update' : 'Add'} Record</button>
       </form>
 
       <div className="RD-list">

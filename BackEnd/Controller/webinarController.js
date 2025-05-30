@@ -1,85 +1,87 @@
-const Webinar = require("../Model/webinarModel");
-const ExcelJS = require("exceljs"); // You'll need to install this: npm i exceljs
 
 
+const Webinar = require('../Model/webinarModel');
 
-// Create a new webinar
-const createWebinar = async (req, res) => {
+const WebinarController = {
+createWebinar: async (req, res) => {
+// console.log("webinar created")
   try {
-    const { title, dateTime, description, link, typeofProgram } = req.body;
-    const newWebinar = new Webinar({ title, dateTime, description, link, typeofProgram });
-    await newWebinar.save();
-    res.status(201).json({ message: "Webinar created successfully", webinar: newWebinar });
-  } catch (error) {
-    res.status(400).json({ message: "Error creating webinar", error: error.message });
-  }
-};
+    // Optional: Explicit validation (you can enhance this as needed)
+    const { webinarTitle, webinarDateTime, webinarDescription, webinarLink, typeOfProgram } = req.body;
+    
+    if (!webinarTitle || !webinarDateTime || !webinarDescription || !webinarLink || !typeOfProgram) {
+      return res.status(400).json({ message: "All fields are required." });
+    }
 
-// Get all webinars
-const getAllWebinars = async (req, res) => {
-  try {
-    const webinars = await Webinar.find();
-    res.status(200).json(webinars);
-  } catch (error) {
-    res.status(400).json({ message: "Error fetching webinars", error: error.message });
-  }
-};
-
-// Existing create/getAll functions...
-
-// ✅ View Registrants
-const getRegistrants = async (req, res) => {
-  try {
-    const webinars = await Webinar.find().populate("registrants", "name email phone");
-    const registrants = webinars.flatMap((webinar) =>
-      webinar.registrants.map((user) => ({
-        webinarTitle: webinar.title,
-        name: user.name,
-        email: user.email,
-        phone: user.phone || "N/A",
-      }))
-    );
-    res.status(200).json(registrants);
-  } catch (error) {
-    res.status(500).json({ message: "Failed to fetch registrants", error: error.message });
-  }
-};
-
-// ✅ Export Attendance (Excel)
-const exportAttendance = async (req, res) => {
-  try {
-    const webinars = await Webinar.find().populate("registrants", "name email phone");
-
-    const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet("Webinar Attendance");
-
-    worksheet.columns = [
-      { header: "Webinar Title", key: "webinarTitle", width: 30 },
-      { header: "Name", key: "name", width: 20 },
-      { header: "Email", key: "email", width: 30 },
-      { header: "Phone", key: "phone", width: 15 },
-    ];
-
-    webinars.forEach((webinar) => {
-      webinar.registrants.forEach((user) => {
-        worksheet.addRow({
-          webinarTitle: webinar.title,
-          name: user.name,
-          email: user.email,
-          phone: user.phone || "N/A",
-        });
-      });
+    // Create a new Webinar document
+    const webinar = new Webinar({
+      webinarTitle,
+      webinarDateTime,
+      webinarDescription,
+      webinarLink,
+      typeOfProgram
     });
 
-    res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-    res.setHeader("Content-Disposition", "attachment; filename=attendance.xlsx");
+    // Save to database
+    const savedWebinar = await webinar.save();
 
-    await workbook.xlsx.write(res);
-    res.end();
+    // Respond with saved document
+    res.status(201).json(savedWebinar);
+
   } catch (error) {
-    res.status(500).json({ message: "Failed to export attendance", error: error.message });
+    
+    res.status(400).json({ message: error.message });
+  }
+},
+
+
+  // Get all webinars
+  getAllWebinars: async (req, res) => {
+    // console.log(" all webinar")
+    try {
+      const webinars = await Webinar.find().sort({ webinarDateTime: -1 });
+      res.json(webinars);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
+
+  // Get webinar by ID
+  getWebinarById: async (req, res) => {
+    try {
+      const webinar = await Webinar.findById(req.params.id);
+      if (!webinar) return res.status(404).json({ message: 'Webinar not found' });
+      res.json(webinar);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
+
+  // Update webinar by ID
+  updateWebinar: async (req, res) => {
+    try {
+      const updatedWebinar = await Webinar.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true, runValidators: true }
+      );
+      if (!updatedWebinar) return res.status(404).json({ message: 'Webinar not found' });
+      res.json(updatedWebinar);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  },
+
+  // Delete webinar by ID
+  deleteWebinar: async (req, res) => {
+    try {
+      const deletedWebinar = await Webinar.findByIdAndDelete(req.params.id);
+      if (!deletedWebinar) return res.status(404).json({ message: 'Webinar not found' });
+      res.json({ message: 'Webinar deleted successfully' });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
   }
 };
 
-
-module.exports = { createWebinar, getAllWebinars, getRegistrants, exportAttendance };
+module.exports = WebinarController;

@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../style/AdminStudentHelpdeskAndTicketing.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../style/AdminStudentHelpdeskAndTicketing.css';
 
-const API_URL = "https://edu-learning-hub.onrender.com/api/tickets"; // change if deployed
+const API_URL = 'https://edu-learning-hub.onrender.com/tickets'; // change if deployed
 
 const AdminStudentHelpdeskAndTicketing = () => {
   const [tickets, setTickets] = useState([]);
   const [ticket, setTicket] = useState({
-    name: "",
-    email: "",
-    phone: "", // ← Add this
-    issue: "",
-    status: "Open",
+    name: '',
+    email: '',
+    phone: '', // ← Add this
+    issue: '',
+    status: 'Open',
   });
 
   const [isEditing, setIsEditing] = useState(false);
@@ -26,7 +26,7 @@ const AdminStudentHelpdeskAndTicketing = () => {
       const res = await axios.get(API_URL);
       setTickets(res.data);
     } catch (err) {
-      console.error("Error fetching tickets:", err);
+      console.error('Error fetching tickets:', err);
     }
   };
 
@@ -43,12 +43,12 @@ const AdminStudentHelpdeskAndTicketing = () => {
       } else {
         await axios.post(API_URL, ticket);
       }
-      setTicket({ name: "", email: "", issue: "", status: "Open" });
+      setTicket({ name: '', email: '', issue: '', status: 'Open' });
       setIsEditing(false);
       setEditingId(null);
       fetchTickets();
     } catch (err) {
-      console.error("Error submitting ticket:", err);
+      console.error('Error submitting ticket:', err);
     }
   };
 
@@ -57,7 +57,7 @@ const AdminStudentHelpdeskAndTicketing = () => {
       await axios.delete(`${API_URL}/${id}`);
       fetchTickets();
     } catch (err) {
-      console.error("Error deleting ticket:", err);
+      console.error('Error deleting ticket:', err);
     }
   };
 
@@ -111,7 +111,7 @@ const AdminStudentHelpdeskAndTicketing = () => {
           <option>Resolved</option>
         </select>
         <button type="submit">
-          {isEditing ? "Update Ticket" : "Submit Ticket"}
+          {isEditing ? 'Update Ticket' : 'Submit Ticket'}
         </button>
       </form>
 

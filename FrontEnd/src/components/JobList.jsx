@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useMemo } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import "../style/JobList.css";
+import React, { useState, useEffect, useMemo } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import '../style/JobList.css';
 
 function JobList() {
   const [jobs, setJobs] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,11 +16,11 @@ function JobList() {
       try {
         setLoading(true);
         const response = await axios.get(
-          "https://edu-learning-hub.onrender.com/api/recruiter/jobs"
+          'https://edu-learning-hub.onrender.com/recruiter/jobs',
         );
         setJobs(response.data);
       } catch (err) {
-        setError("Failed to fetch jobs");
+        setError('Failed to fetch jobs');
       } finally {
         setLoading(false);
       }
@@ -45,7 +45,7 @@ function JobList() {
 
   const toggleType = (type) => {
     setSelectedTypes((prev) =>
-      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
+      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type],
     );
   };
 
@@ -71,16 +71,16 @@ function JobList() {
         />
         <div className="job-list-type-filters">
           {[
-            "Full-time",
-            "Part-time",
-            "Contract",
-            "Internship",
-            "Freelance",
+            'Full-time',
+            'Part-time',
+            'Contract',
+            'Internship',
+            'Freelance',
           ].map((type) => (
             <button
               key={type}
               className={`job-list-type-btn ${
-                selectedTypes.includes(type) ? "selected" : ""
+                selectedTypes.includes(type) ? 'selected' : ''
               }`}
               onClick={() => toggleType(type)}
             >
@@ -102,9 +102,9 @@ function JobList() {
             className="job-list-job-card"
             whileHover={{
               scale: 1.02,
-              boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+              boxShadow: '0 8px 20px rgba(0,0,0,0.1)',
             }}
-            transition={{ type: "spring", stiffness: 150 }}
+            transition={{ type: 'spring', stiffness: 150 }}
           >
             <div className="job-list-job-info">
               <h3 className="job-list-job-title">{job.jobTitle}</h3>
@@ -125,21 +125,21 @@ function JobList() {
                 onClick={async () => {
                   try {
                     const res = await fetch(
-                      `https://edu-learning-hub.onrender.com/api/apply/${job._id}`
+                      `https://edu-learning-hub.onrender.com/apply/${job._id}`,
                     );
                     const data = await res.json();
                     if (data.applicationLink) {
                       window.open(
                         data.applicationLink,
-                        "_blank",
-                        "noopener,noreferrer"
+                        '_blank',
+                        'noopener,noreferrer',
                       );
                     } else {
-                      alert("Application link not found");
+                      alert('Application link not found');
                     }
                   } catch (err) {
                     console.error(err);
-                    alert("Failed to get application link");
+                    alert('Failed to get application link');
                   }
                 }}
               >

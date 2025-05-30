@@ -1,36 +1,36 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import "../style/JobPosting.css";
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import '../style/JobPosting.css';
 
-const API_BASE = "https://edu-learning-hub.onrender.com/api/recruiter/jobs";
+const API_BASE = 'https://edu-learning-hub.onrender.com/recruiter/jobs';
 
 const JobPosting = () => {
   const [formData, setFormData] = useState({
-    jobTitle: "",
-    companyName: "",
-    location: "",
-    employmentType: "",
-    workplaceType: "",
-    industry: "",
-    experienceLevel: "",
-    salaryRange: "",
-    jobDescription: "",
-    skillsRequired: "",
-    applicationDeadline: "",
-    applicationLink: "",
-    contactEmail: "",
-    jobBenefits: "",
+    jobTitle: '',
+    companyName: '',
+    location: '',
+    employmentType: '',
+    workplaceType: '',
+    industry: '',
+    experienceLevel: '',
+    salaryRange: '',
+    jobDescription: '',
+    skillsRequired: '',
+    applicationDeadline: '',
+    applicationLink: '',
+    contactEmail: '',
+    jobBenefits: '',
     vacancies: 1,
-    educationRequirements: "",
-    companyLogo: "",
-    companyWebsite: "",
+    educationRequirements: '',
+    companyLogo: '',
+    companyWebsite: '',
   });
 
   const [isEditing, setIsEditing] = useState(false);
   const [editJobId, setEditJobId] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,24 +51,24 @@ const JobPosting = () => {
 
   const clearForm = () => {
     setFormData({
-      jobTitle: "",
-      companyName: "",
-      location: "",
-      employmentType: "",
-      workplaceType: "",
-      industry: "",
-      experienceLevel: "",
-      salaryRange: "",
-      jobDescription: "",
-      skillsRequired: "",
-      applicationDeadline: "",
-      applicationLink: "",
-      contactEmail: "",
-      jobBenefits: "",
+      jobTitle: '',
+      companyName: '',
+      location: '',
+      employmentType: '',
+      workplaceType: '',
+      industry: '',
+      experienceLevel: '',
+      salaryRange: '',
+      jobDescription: '',
+      skillsRequired: '',
+      applicationDeadline: '',
+      applicationLink: '',
+      contactEmail: '',
+      jobBenefits: '',
       vacancies: 1,
-      educationRequirements: "",
-      companyLogo: "",
-      companyWebsite: "",
+      educationRequirements: '',
+      companyLogo: '',
+      companyWebsite: '',
     });
     setIsEditing(false);
     setEditJobId(null);
@@ -88,36 +88,36 @@ const JobPosting = () => {
       !formData.contactEmail.trim() ||
       !formData.applicationLink.trim()
     ) {
-      alert("Please fill in all required fields marked with *.");
+      alert('Please fill in all required fields marked with *.');
       return;
     }
 
     if (!isValidEmail(formData.contactEmail)) {
-      alert("Please enter a valid contact email.");
+      alert('Please enter a valid contact email.');
       return;
     }
     if (!isValidURL(formData.applicationLink)) {
-      alert("Please enter a valid URL for the Apply Link.");
+      alert('Please enter a valid URL for the Apply Link.');
       return;
     }
     if (formData.companyWebsite && !isValidURL(formData.companyWebsite)) {
-      alert("Please enter a valid URL for the Company Website.");
+      alert('Please enter a valid URL for the Company Website.');
       return;
     }
     if (formData.companyLogo && !isValidURL(formData.companyLogo)) {
-      alert("Please enter a valid URL for the Company Logo.");
+      alert('Please enter a valid URL for the Company Logo.');
       return;
     }
     if (formData.vacancies < 1) {
-      alert("Vacancies must be at least 1.");
+      alert('Vacancies must be at least 1.');
       return;
     }
 
     try {
       setLoading(true);
-      const recruiterId = localStorage.getItem("recruiterId");
+      const recruiterId = localStorage.getItem('recruiterId');
       if (!recruiterId)
-        throw new Error("Recruiter ID not found in localStorage.");
+        throw new Error('Recruiter ID not found in localStorage.');
 
       const dataToSend = {
         ...formData,
@@ -126,12 +126,12 @@ const JobPosting = () => {
       };
 
       const url = isEditing ? `${API_BASE}/${editJobId}` : API_BASE;
-      const method = isEditing ? "PUT" : "POST";
+      const method = isEditing ? 'PUT' : 'POST';
 
       const res = await fetch(url, {
         method,
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(dataToSend),
@@ -141,12 +141,12 @@ const JobPosting = () => {
         const errMsg = await res.json();
         throw new Error(
           errMsg.message ||
-            (isEditing ? "Failed to update job" : "Failed to post job")
+            (isEditing ? 'Failed to update job' : 'Failed to post job'),
         );
       }
 
       alert(
-        isEditing ? "Job Updated Successfully!" : "Job Posted Successfully!"
+        isEditing ? 'Job Updated Successfully!' : 'Job Posted Successfully!',
       );
       clearForm();
     } catch (err) {
@@ -161,10 +161,10 @@ const JobPosting = () => {
       className="job-posting-container"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
     >
       <h2 className="job-posting-title">
-        {isEditing ? "Edit Job" : "Post a Job"}
+        {isEditing ? 'Edit Job' : 'Post a Job'}
       </h2>
 
       <form className="job-posting-form" onSubmit={handleSubmit} noValidate>
@@ -439,11 +439,11 @@ const JobPosting = () => {
           >
             {loading
               ? isEditing
-                ? "Updating..."
-                : "Posting..."
+                ? 'Updating...'
+                : 'Posting...'
               : isEditing
-              ? "Update Job"
-              : "Post Job"}
+              ? 'Update Job'
+              : 'Post Job'}
           </motion.button>
 
           {isEditing && (

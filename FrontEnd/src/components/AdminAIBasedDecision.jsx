@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../style/AdminAIBasedDecision.css";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../style/AdminAIBasedDecision.css';
 
 const AdminAdmissionsEnrollment = () => {
   const [insights, setInsights] = useState([]);
   const [insight, setInsight] = useState({
-    customerSegment: "",
-    churnPrediction: "",
-    retentionStrategy: "",
-    leadPriority: "Low",
+    customerSegment: '',
+    churnPrediction: '',
+    retentionStrategy: '',
+    leadPriority: 'Low',
   });
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
   // Update with your own backend base URL
-  const BASE_URL =
-    "https://edu-learning-hub.onrender.com/api/decision-insights";
+  const BASE_URL = 'https://edu-learning-hub.onrender.com/decision-insights';
 
   useEffect(() => {
     fetchInsights();
@@ -26,7 +25,7 @@ const AdminAdmissionsEnrollment = () => {
       const res = await axios.get(BASE_URL);
       setInsights(res.data);
     } catch (err) {
-      console.error("Error fetching insights:", err.message);
+      console.error('Error fetching insights:', err.message);
     }
   };
 
@@ -45,14 +44,14 @@ const AdminAdmissionsEnrollment = () => {
         await axios.post(BASE_URL, insight);
       }
       setInsight({
-        customerSegment: "",
-        churnPrediction: "",
-        retentionStrategy: "",
-        leadPriority: "Low",
+        customerSegment: '',
+        churnPrediction: '',
+        retentionStrategy: '',
+        leadPriority: 'Low',
       });
       fetchInsights();
     } catch (err) {
-      console.error("Error submitting insight:", err.message);
+      console.error('Error submitting insight:', err.message);
     }
   };
 
@@ -61,7 +60,7 @@ const AdminAdmissionsEnrollment = () => {
       await axios.delete(`${BASE_URL}/${id}`);
       fetchInsights();
     } catch (err) {
-      console.error("Error deleting insight:", err.message);
+      console.error('Error deleting insight:', err.message);
     }
   };
 
@@ -120,7 +119,7 @@ const AdminAdmissionsEnrollment = () => {
           <option>High</option>
         </select>
         <button type="submit">
-          {isEditing ? "Update Insight" : "Add Insight"}
+          {isEditing ? 'Update Insight' : 'Add Insight'}
         </button>
       </form>
 

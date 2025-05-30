@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "../style/AdminCorporateClientForm.css";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import '../style/AdminCorporateClientForm.css';
 
 const AdminCorporateClientForm = () => {
   const [clients, setClients] = useState([]);
   const [client, setClient] = useState({
-    companyName: "",
-    contactPerson: "",
-    email: "",
-    phone: "",
-    contractStartDate: "",
-    contractEndDate: "",
-    status: "Pending",
+    companyName: '',
+    contactPerson: '',
+    email: '',
+    phone: '',
+    contractStartDate: '',
+    contractEndDate: '',
+    status: 'Pending',
   });
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
-  const API_URL = "https://edu-learning-hub.onrender.com/api/clients"; // update with your backend URL if hosted
+  const API_URL = 'https://edu-learning-hub.onrender.com/clients'; // update with your backend URL if hosted
 
   // Fetch clients from backend
   const fetchClients = async () => {
@@ -24,7 +24,7 @@ const AdminCorporateClientForm = () => {
       const res = await axios.get(API_URL);
       setClients(res.data);
     } catch (err) {
-      console.error("Error fetching clients:", err);
+      console.error('Error fetching clients:', err);
     }
   };
 
@@ -50,17 +50,17 @@ const AdminCorporateClientForm = () => {
         await axios.post(API_URL, client);
       }
       setClient({
-        companyName: "",
-        contactPerson: "",
-        email: "",
-        phone: "",
-        contractStartDate: "",
-        contractEndDate: "",
-        status: "Pending",
+        companyName: '',
+        contactPerson: '',
+        email: '',
+        phone: '',
+        contractStartDate: '',
+        contractEndDate: '',
+        status: 'Pending',
       });
       fetchClients(); // Refresh list
     } catch (err) {
-      console.error("Error submitting form:", err);
+      console.error('Error submitting form:', err);
     }
   };
 
@@ -70,7 +70,7 @@ const AdminCorporateClientForm = () => {
       await axios.delete(`${API_URL}/${id}`);
       fetchClients();
     } catch (err) {
-      console.error("Error deleting client:", err);
+      console.error('Error deleting client:', err);
     }
   };
 
@@ -140,7 +140,7 @@ const AdminCorporateClientForm = () => {
           <option>Expired</option>
         </select>
         <button type="submit">
-          {isEditing ? "Update Client" : "Add Client"}
+          {isEditing ? 'Update Client' : 'Add Client'}
         </button>
       </form>
 
@@ -169,12 +169,12 @@ const AdminCorporateClientForm = () => {
                   <td>{c.email}</td>
                   <td>{c.phone}</td>
                   <td>
-                    {c.contractStartDate?.slice(0, 10)} to{" "}
+                    {c.contractStartDate?.slice(0, 10)} to{' '}
                     {c.contractEndDate?.slice(0, 10)}
                   </td>
                   <td>{c.status}</td>
                   <td>
-                    <button onClick={() => editClient(c)}>Edit</button>{" "}
+                    <button onClick={() => editClient(c)}>Edit</button>{' '}
                     <button onClick={() => deleteClient(c._id)}>Delete</button>
                   </td>
                 </tr>
