@@ -30,7 +30,7 @@ const PaymentButton = ({ amount, user = {} }) => {
     try {
       // Step 1: Create Order
       const { data: order } = await axios.post(
-        'https://edu-learning-hub.onrender.com/create-order',
+        'https://edu-learning-hub.onrender.com/api/create-order',
         { amount },
       );
 
@@ -45,7 +45,7 @@ const PaymentButton = ({ amount, user = {} }) => {
           try {
             // Step 2: Verify Payment
             const verifyRes = await axios.post(
-              'https://edu-learning-hub.onrender.com/verify-payment',
+              'https://edu-learning-hub.onrender.com/api/verify-payment',
               response,
             );
 

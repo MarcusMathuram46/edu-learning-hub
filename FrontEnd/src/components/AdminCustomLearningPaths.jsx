@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../style/AdminCustomLearningPaths.css';
 
-const API_URL = 'https://edu-learning-hub.onrender.com/custom-learning-paths'; // Change this to your actual backend URL
+const API_URL =
+  'https://edu-learning-hub.onrender.com/api/custom-learning-paths'; // Change this to your actual backend URL
 
 const AdminCustomLearningPaths = () => {
   const [paths, setPaths] = useState([]);

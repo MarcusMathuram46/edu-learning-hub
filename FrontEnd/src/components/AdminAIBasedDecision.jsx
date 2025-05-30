@@ -14,7 +14,8 @@ const AdminAdmissionsEnrollment = () => {
   const [editingId, setEditingId] = useState(null);
 
   // Update with your own backend base URL
-  const BASE_URL = 'https://edu-learning-hub.onrender.com/decision-insights';
+  const BASE_URL =
+    'https://edu-learning-hub.onrender.com/api/decision-insights';
 
   useEffect(() => {
     fetchInsights();

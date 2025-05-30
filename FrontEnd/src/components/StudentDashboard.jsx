@@ -13,7 +13,7 @@ function StudentDashboard() {
     const fetchDashboardData = async () => {
       try {
         const response = await axios.get(
-          'https://edu-learning-hub.onrender.com/student/dashboard',
+          'https://edu-learning-hub.onrender.com/api/student/dashboard',
           {
             withCredentials: true, // 💡 This sends the JWT cookie
           },

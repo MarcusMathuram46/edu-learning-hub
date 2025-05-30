@@ -16,7 +16,7 @@ const AdminCorporateClientForm = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
-  const API_URL = 'https://edu-learning-hub.onrender.com/clients'; // update with your backend URL if hosted
+  const API_URL = 'https://edu-learning-hub.onrender.com/api/clients'; // update with your backend URL if hosted
 
   // Fetch clients from backend
   const fetchClients = async () => {

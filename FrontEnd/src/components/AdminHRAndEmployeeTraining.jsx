@@ -14,7 +14,7 @@ const AdminHRAndEmployeeTraining = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
-  const API_URL = 'https://edu-learning-hub.onrender.com/employees'; // update with your backend URL
+  const API_URL = 'https://edu-learning-hub.onrender.com/api/employees'; // update with your backend URL
 
   // Fetch employees on load
   useEffect(() => {

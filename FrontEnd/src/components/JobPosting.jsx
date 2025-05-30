@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import '../style/JobPosting.css';
 
-const API_BASE = 'https://edu-learning-hub.onrender.com/recruiter/jobs';
+const API_BASE = 'https://edu-learning-hub.onrender.com/api/recruiter/jobs';
 
 const JobPosting = () => {
   const [formData, setFormData] = useState({

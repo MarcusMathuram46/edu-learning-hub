@@ -15,7 +15,7 @@ const LoginPortal = () => {
   useEffect(() => {
     // Check for active session (optional)
     axios
-      .get('https://edu-learning-hub.onrender.com/me', {
+      .get('https://edu-learning-hub.onrender.com/api/me', {
         withCredentials: true,
       })
       .then((res) => {
@@ -39,7 +39,7 @@ const LoginPortal = () => {
 
     try {
       const response = await axios.post(
-        'https://edu-learning-hub.onrender.com/login',
+        'https://edu-learning-hub.onrender.com/api/login',
         { email, password },
         { withCredentials: true },
       );

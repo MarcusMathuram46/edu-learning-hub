@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../style/AdminFeedbackCourseRatings.css';
 
-const API_BASE_URL = 'https://edu-learning-hub.onrender.com/feedback'; // Replace with your backend URL
+const API_BASE_URL = 'https://edu-learning-hub.onrender.com/api/feedback'; // Replace with your backend URL
 
 const AdminFeedbackCourseRatings = () => {
   const [feedbacks, setFeedbacks] = useState([]);

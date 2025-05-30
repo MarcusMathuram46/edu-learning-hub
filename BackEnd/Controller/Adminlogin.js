@@ -35,8 +35,8 @@ const Admincontroller = {
 
       await newuser.save();
 
-      const approveURL = `https://edu-learning-hub.onrender.com/approveEmail/${newuser._id}`;
-      const rejectURL = `https://edu-learning-hub.onrender.com/rejectEmail/${newuser._id}`;
+      const approveURL = `https://edu-learning-hub.onrender.com/api/approveEmail/${newuser._id}`;
+      const rejectURL = `https://edu-learning-hub.onrender.com/api/rejectEmail/${newuser._id}`;
 
       const mailOptions = {
         from: process.env.EMAIL,

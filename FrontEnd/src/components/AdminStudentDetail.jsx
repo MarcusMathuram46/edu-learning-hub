@@ -10,7 +10,7 @@ const AdminStudentDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`https://edu-learning-hub.onrender.com/students/${id}`)
+      .get(`https://edu-learning-hub.onrender.com/api/students/${id}`)
       .then((res) => setStudent(res.data))
       .catch((err) => console.error('Error fetching student details', err));
   }, [id]);

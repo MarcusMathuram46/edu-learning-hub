@@ -23,7 +23,7 @@ const AdminWebsiteContentManager = () => {
     const fetchContent = async () => {
       try {
         const res = await axios.get(
-          'https://edu-learning-hub.onrender.com/website-content',
+          'https://edu-learning-hub.onrender.com/api/website-content',
         );
         if (res.data) {
           setContent(res.data);
@@ -60,7 +60,7 @@ const AdminWebsiteContentManager = () => {
   const handleSubmit = async () => {
     try {
       await axios.post(
-        'https://edu-learning-hub.onrender.com/website-content',
+        'https://edu-learning-hub.onrender.com/api/website-content',
         content,
       );
       alert('Content saved successfully!');

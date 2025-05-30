@@ -21,7 +21,7 @@ function RecruiterJobs() {
   const fetchJobs = async () => {
     try {
       const response = await axios.get(
-        'https://edu-learning-hub.onrender.com/recruiter/jobs',
+        'https://edu-learning-hub.onrender.com/api/recruiter/jobs',
       );
       setJobs(response.data);
     } catch (error) {
@@ -34,7 +34,7 @@ function RecruiterJobs() {
   const deleteJob = async (id) => {
     try {
       await axios.delete(
-        `https://edu-learning-hub.onrender.com/recruiter/jobs/${id}`,
+        `https://edu-learning-hub.onrender.com/api/recruiter/jobs/${id}`,
       );
       setJobs((prevJobs) => prevJobs.filter((job) => job._id !== id));
     } catch (error) {
@@ -61,7 +61,7 @@ function RecruiterJobs() {
     try {
       const updatedJob = { ...formData };
       await axios.put(
-        `https://edu-learning-hub.onrender.com/recruiter/jobs/${editingJob}`,
+        `https://edu-learning-hub.onrender.com/api/recruiter/jobs/${editingJob}`,
         updatedJob,
       );
       setJobs((prevJobs) =>

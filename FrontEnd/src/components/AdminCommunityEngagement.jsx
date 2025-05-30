@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../style/AdminCommunityEngagement.css';
 
-const BASE_URL = 'https://edu-learning-hub.onrender.com/community'; // Replace with Render URL if deployed
+const BASE_URL = 'https://edu-learning-hub.onrender.com/api/community'; // Replace with Render URL if deployed
 
 const AdminCommunityEngagement = () => {
   const [forums, setForums] = useState([]);

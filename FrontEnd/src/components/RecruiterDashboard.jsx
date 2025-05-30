@@ -17,15 +17,15 @@ function RecruiterDashboard() {
 
         const [statsRes, applicationsRes, performanceRes] = await Promise.all([
           axios.get(
-            'https://edu-learning-hub.onrender.com/recruiter/dashboard/stats',
+            'https://edu-learning-hub.onrender.com/api/recruiter/dashboard/stats',
             { withCredentials: true },
           ),
           axios.get(
-            'https://edu-learning-hub.onrender.com/recruiter/dashboard/recent-applications',
+            'https://edu-learning-hub.onrender.com/api/recruiter/dashboard/recent-applications',
             { withCredentials: true },
           ),
           axios.get(
-            'https://edu-learning-hub.onrender.com/recruiter/dashboard/job-performance',
+            'https://edu-learning-hub.onrender.com/api/recruiter/dashboard/job-performance',
             { withCredentials: true },
           ),
         ]);

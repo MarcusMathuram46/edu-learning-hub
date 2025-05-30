@@ -16,7 +16,7 @@ function JobList() {
       try {
         setLoading(true);
         const response = await axios.get(
-          'https://edu-learning-hub.onrender.com/recruiter/jobs',
+          'https://edu-learning-hub.onrender.com/api/recruiter/jobs',
         );
         setJobs(response.data);
       } catch (err) {
@@ -125,7 +125,7 @@ function JobList() {
                 onClick={async () => {
                   try {
                     const res = await fetch(
-                      `https://edu-learning-hub.onrender.com/apply/${job._id}`,
+                      `https://edu-learning-hub.onrender.com/api/apply/${job._id}`,
                     );
                     const data = await res.json();
                     if (data.applicationLink) {

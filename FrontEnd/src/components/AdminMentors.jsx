@@ -1,20 +1,20 @@
-import React, { useEffect, useMemo, useState } from "react";
-import axios from "./axios";
-import { useNavigate } from "react-router-dom";
-import "../style/AdminMentor.css"; // Adjust the path as necessary
+import React, { useEffect, useMemo, useState } from 'react';
+import axios from './axios';
+import { useNavigate } from 'react-router-dom';
+import '../style/AdminMentor.css'; // Adjust the path as necessary
 
 const AdminMentors = () => {
   const [mentors, setMentors] = useState([]);
-  const [search, setSearch] = useState("");
-  const [expertiseFilter, setExpertiseFilter] = useState("");
-  const [statusFilter, setStatusFilter] = useState("");
+  const [search, setSearch] = useState('');
+  const [expertiseFilter, setExpertiseFilter] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
   const [newMentor, setNewMentor] = useState({
-    name: "",
-    expertise: "",
-    status: "Active",
+    name: '',
+    expertise: '',
+    status: 'Active',
     photo: null, // For handling file input
-    email: "",
-    mobile: "",
+    email: '',
+    mobile: '',
   });
   const [editId, setEditId] = useState(null);
   const [editedMentor, setEditedMentor] = useState({});
@@ -29,10 +29,10 @@ const AdminMentors = () => {
   const fetchMentors = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get("/mentors");
+      const { data } = await axios.get('/mentors');
       setMentors(data);
     } catch (error) {
-      console.error("Error fetching mentors:", error);
+      console.error('Error fetching mentors:', error);
     } finally {
       setLoading(false);
     }
@@ -44,7 +44,7 @@ const AdminMentors = () => {
       await axios.delete(`/mentors/${id}`);
       setMentors((prev) => prev.filter((m) => m._id !== id));
     } catch (error) {
-      console.error("Error deleting mentor:", error);
+      console.error('Error deleting mentor:', error);
     }
   };
 
@@ -52,23 +52,23 @@ const AdminMentors = () => {
   const handleAddMentor = async () => {
     const formData = new FormData();
     Object.entries(newMentor).forEach(([key, value]) =>
-      formData.append(key, value)
+      formData.append(key, value),
     );
 
     try {
       setLoading(true);
-      const { data } = await axios.post("/mentors", formData);
+      const { data } = await axios.post('/mentors', formData);
       setMentors([...mentors, data]);
       setNewMentor({
-        name: "",
-        expertise: "",
-        status: "Active",
+        name: '',
+        expertise: '',
+        status: 'Active',
         photo: null,
-        email: "",
-        mobile: "",
+        email: '',
+        mobile: '',
       });
     } catch (error) {
-      console.error("Error adding mentor:", error);
+      console.error('Error adding mentor:', error);
     } finally {
       setLoading(false);
     }
@@ -86,12 +86,12 @@ const AdminMentors = () => {
       setLoading(true);
       const { data } = await axios.put(`/mentors/${editId}`, editedMentor);
       setMentors((prev) =>
-        prev.map((mentor) => (mentor._id === editId ? data : mentor))
+        prev.map((mentor) => (mentor._id === editId ? data : mentor)),
       );
       setEditId(null);
       setEditedMentor({});
     } catch (error) {
-      console.error("Error updating mentor:", error);
+      console.error('Error updating mentor:', error);
     } finally {
       setLoading(false);
     }
@@ -100,14 +100,14 @@ const AdminMentors = () => {
   // Get badge class for mentor status
   const getStatusBadgeClass = (status) => {
     switch (status) {
-      case "Active":
-        return "success";
-      case "Inactive":
-        return "secondary";
-      case "Retired":
-        return "warning";
+      case 'Active':
+        return 'success';
+      case 'Inactive':
+        return 'secondary';
+      case 'Retired':
+        return 'warning';
       default:
-        return "light";
+        return 'light';
     }
   };
 
@@ -117,7 +117,7 @@ const AdminMentors = () => {
       (m) =>
         m.name.toLowerCase().includes(search.toLowerCase()) &&
         (expertiseFilter ? m.expertise === expertiseFilter : true) &&
-        (statusFilter ? m.status === statusFilter : true)
+        (statusFilter ? m.status === statusFilter : true),
     );
   }, [mentors, search, expertiseFilter, statusFilter]);
 
@@ -249,16 +249,16 @@ const AdminMentors = () => {
                 <img
                   src={
                     mentor.photo
-                      ? `https://learning-hub-p2yq.onrender.com${mentor.photo}`
-                      : "https://via.placeholder.com/40" // Or your custom default image
+                      ? `https://edu-learning-hub.onrender.com${mentor.photo}`
+                      : 'https://via.placeholder.com/40' // Or your custom default image
                   }
                   alt="mentor"
                   style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                    objectPosition: "top",
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                    objectPosition: 'top',
                   }}
                 />
               </td>
@@ -276,7 +276,7 @@ const AdminMentors = () => {
                 ) : (
                   <span
                     onClick={() => navigate(`/admin/mentors/${mentor._id}`)}
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: 'pointer' }}
                   >
                     {mentor.name}
                   </span>

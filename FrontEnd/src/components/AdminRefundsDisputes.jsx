@@ -10,7 +10,7 @@ const AdminRefundsDisputes = () => {
   const [editingIndex, setEditingIndex] = useState(null);
   const [editingId, setEditingId] = useState(null); // For backend update
 
-  const API_URL = 'https://edu-learning-hub.onrender.com/refunds'; // 🔁 Replace with actual backend URL
+  const API_URL = 'https://edu-learning-hub.onrender.com/api/refunds'; // 🔁 Replace with actual backend URL
 
   // Fetch all refunds on load
   useEffect(() => {

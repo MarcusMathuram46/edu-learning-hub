@@ -39,7 +39,7 @@ const AdminBlog = () => {
       }
 
       const response = await axios.post(
-        'https://edu-learning-hub.onrender.com/blog',
+        'https://edu-learning-hub.onrender.com/api/blog',
         data,
         {
           headers: { 'Content-Type': 'multipart/form-data' },

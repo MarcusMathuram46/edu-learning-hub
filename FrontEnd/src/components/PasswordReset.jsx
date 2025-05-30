@@ -19,7 +19,7 @@ const PasswordReset = () => {
 
     try {
       const response = await axios.post(
-        'https://edu-learning-hub.onrender.com/forgetpassword',
+        'https://edu-learning-hub.onrender.com/api/forgetpassword',
         { email },
       );
       alert(response.data.message);
@@ -37,7 +37,7 @@ const PasswordReset = () => {
 
     try {
       const response = await axios.post(
-        'https://edu-learning-hub.onrender.com/setNewPassword',
+        'https://edu-learning-hub.onrender.com/api/setNewPassword',
         { token, newPassword },
       );
       alert(response.data.message);

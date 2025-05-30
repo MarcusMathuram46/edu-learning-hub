@@ -15,7 +15,7 @@ const AdminStudents = () => {
     const fetchStudents = async () => {
       try {
         const { data } = await axios.get(
-          'https://edu-learning-hub.onrender.com/students',
+          'https://edu-learning-hub.onrender.com/api/students',
         );
         setStudents(data);
       } catch (error) {
@@ -29,7 +29,7 @@ const AdminStudents = () => {
   const handleDelete = useCallback(async (id) => {
     try {
       await axios.delete(
-        `https://edu-learning-hub.onrender.com/students/${id}`,
+        `https://edu-learning-hub.onrender.com/api/students/${id}`,
       );
       setStudents((prevStudents) =>
         prevStudents.filter((student) => student._id !== id),

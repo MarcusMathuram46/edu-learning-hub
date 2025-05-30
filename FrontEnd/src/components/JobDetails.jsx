@@ -23,7 +23,7 @@ function JobDetails() {
       try {
         setLoading(true);
         const { data } = await axios.get(
-          `https://edu-learning-hub.onrender.com/recruiter/jobs/${id}`,
+          `https://edu-learning-hub.onrender.com/api/recruiter/jobs/${id}`,
         );
         setJobData(data);
         setError(null);
@@ -129,7 +129,7 @@ function JobDetails() {
           onClick={async () => {
             try {
               const res = await fetch(
-                `https://edu-learning-hub.onrender.com/apply/${jobData._id}`,
+                `https://edu-learning-hub.onrender.com/api/apply/${jobData._id}`,
               );
               const data = await res.json();
               if (data.applicationLink) {

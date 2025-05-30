@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../style/AdminCustomReportsAndDataExports.css';
 
-const API_URL = 'https://edu-learning-hub.onrender.com/reports'; // Replace with your backend URL
+const API_URL = 'https://edu-learning-hub.onrender.com/api/reports'; // Replace with your backend URL
 
 const AdminCustomReportsAndDataExports = () => {
   const [reports, setReports] = useState([]);

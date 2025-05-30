@@ -17,7 +17,7 @@ const AdminSalesFunnelConversion = () => {
   // 🔁 Fetch all entries
   useEffect(() => {
     axios
-      .get('https://edu-learning-hub.onrender.com/funnel-entries')
+      .get('https://edu-learning-hub.onrender.com/api/funnel-entries')
       .then((res) => {
         const entries = res.data;
         const grouped = {
@@ -40,7 +40,7 @@ const AdminSalesFunnelConversion = () => {
   const addEntry = () => {
     if (newEntry.trim()) {
       axios
-        .post('https://edu-learning-hub.onrender.com/funnel-entries', {
+        .post('https://edu-learning-hub.onrender.com/api/funnel-entries', {
           name: newEntry,
           stage: 'Lead',
         })
@@ -59,7 +59,7 @@ const AdminSalesFunnelConversion = () => {
   // 🗑️ Delete entry
   const deleteEntry = (stage, id) => {
     axios
-      .delete(`https://edu-learning-hub.onrender.com/funnel-entries/${id}`)
+      .delete(`https://edu-learning-hub.onrender.com/api/funnel-entries/${id}`)
       .then(() => {
         setFunnel((prev) => ({
           ...prev,
@@ -83,7 +83,7 @@ const AdminSalesFunnelConversion = () => {
     if (oldStage !== newStage) {
       axios
         .put(
-          `https://edu-learning-hub.onrender.com/funnel-entries/${entry.id}`,
+          `https://edu-learning-hub.onrender.com/api/funnel-entries/${entry.id}`,
           {
             stage: newStage,
           },
