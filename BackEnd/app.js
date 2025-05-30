@@ -44,7 +44,7 @@ const emailCronJob = require('./Utils/schedulerService.js');
 emailCronJob.start();
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
+// cors
 const allowedOrigins = [
   'https://edulearning-hub.netlify.app',
   'http://localhost:5173',
